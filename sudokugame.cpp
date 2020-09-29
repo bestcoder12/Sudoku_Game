@@ -15,9 +15,9 @@ class Sudoku
 {
 	//Declaring private data members that is they cannot be accessed outside the class
 	private: 
-	
-	         //To design a 9x9 board for sudoku //
-		int board[9][9]; 
+		
+		//To design a 9x9 board for sudoku //
+		    int board[9][9]; 
 		//contains the number of cells filled in sudoku //
 	        int filled; 
 		//contains the number of unfilled or empty cells in sudoku //
@@ -26,8 +26,8 @@ class Sudoku
 	// Data members and functions within the public access specifier can be accessed from anywhere
 	public: 
 		
-	      // Default constructor 
-	      Sudoku() 
+	    // Default constructor 
+	    Sudoku() 
 		{
 			// Taking a string input for difficulty of the board so as
 			// to enhance the readablity of the code and not remember
@@ -42,17 +42,16 @@ class Sudoku
 			cout << "\t2. Medium" <<endl;
 			cout << "\t3. Hard" <<endl;
 			
-		        //for input of string difficulty
+	        //for input of string difficulty
 			getline(cin,Difficulty); 
 			
 			// Comparing difficulty entered by the user to the Specified  difficulty levels 
 			
-		// Using string compare function which compares Difficulty entered by the user with the string specified //
-		      if(Difficulty.compare("Easy") == 0) 
-			
+		    // Using string compare function which compares Difficulty entered by the user with the string specified //
+		    if(Difficulty.compare("Easy") == 0) 
 				//In this case it is comparing the difficulty with "Easy//
-				
-			{	//for easy		
+			{	
+                //for easy		
 				filled = 60; 
 			}
 			else if(Difficulty.compare("Medium") == 0)

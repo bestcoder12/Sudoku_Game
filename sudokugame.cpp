@@ -62,25 +62,25 @@ class Sudoku
 			{
 				for(j=0;j<10;j++)
 				{
-					cout<<"Enter the location where you want to insert the element"<<endl;
-					cout<<"Enter row  ";
-					cin>>row;
+					cout << "Enter the location where you want to insert the element" << endl;
 					
-					cout<<"Enter column ";
-					cin>>col;
+					cout << "Enter row: ";
+					cin >> row;
 					
+					cout << "Enter column ";
+					cin >> col;
+					
+					if (row > 8 || row < 0 || col < 0 || col > 8)
+					{
+						cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
+						continue;
+					}
 					
 					if(row==i && col==j)
 					{
-						
 						cout<<"Enter your Element"<<endl;
-						cin>>a[i][j];
-						
+						cin>>a[i][j];	
 					}
-					else
-					cout<<"	Wrong Position"<<endl;
-					break();
-					
 				}
 			}
 		}

@@ -46,11 +46,12 @@ class Sudoku
 			{
 				filled = 60;
 			}
-			unfilled=81-filled;
+			unfilled = 81-filled;
 
-			for (int i = 0; i < 8; i++)
+			// Initializing the board with invalid values
+			for (int i = 0; i <= 8; i++)
 			{
-				for (int j = 0; j < 8; j++)
+				for (int j = 0; j <= 8; j++)
 				{
 					board[i][j] = -1;
 				}

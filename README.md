@@ -5,31 +5,14 @@ Made by two college students fooling around for their OOPs project.
 
 
 
-*Sudoku is a number based game which is played by a single player provided the board
-for the game is already set for him.*
+_*Sudoku is a number based game which is played by a single player provided the board
+for the game is already set for him.*_
 
 The layout of the board is similar to the one given below.
 
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------   
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
-		|  |  |  |  |  |  |  |  |  |
-		----------------------------
+![Sudoku Board](https://github.com/bestcoder12/Sudoku_Game/blob/updt_RDME/Sudoku_Puzzle.jpg)
 
+Source: By Tim Stellmach, CC0, https://commons.wikimedia.org/w/index.php?curid=57831926
 
 The board above has 9 rows and 9 columns that is, 81 cells.
 

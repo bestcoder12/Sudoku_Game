@@ -86,7 +86,3 @@ class Sudoku
 		}
 }
 
-int main(void)
-{
-    Sudoku board;
-}

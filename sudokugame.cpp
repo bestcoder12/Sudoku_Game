@@ -15,7 +15,6 @@ class Sudoku
 {
 	//Declaring private data members that is they cannot be accessed outside the class
 	private: 
-		
 		//To design a 9x9 board for sudoku //
 		    int board[9][9]; 
 		//contains the number of cells filled in sudoku //

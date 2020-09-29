@@ -60,9 +60,9 @@ class Sudoku
 			
 			//initializing every element or cells of the board as -1
 
-			for (int i = 0; i < 8; i++) 
+			for (int i = 0; i < 10; i++) 
 			{
-				for (int j = 0; j < 8; j++)
+				for (int j = 0; j < 10; j++)
 				{
 					board[i][j] = -1; //every cell in the sudoku board is intiliazed as -1 //
 				}

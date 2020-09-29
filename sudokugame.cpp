@@ -10,11 +10,12 @@ using namespace std;
 
 class Sudoku
 {
-	public:
+	private:
 		int board[9][9];
 		int filled;
 		int unfilled;
-		
+	
+	public:
 		Sudoku()
 		{
 			// Taking a string input for difficulty of the board so as

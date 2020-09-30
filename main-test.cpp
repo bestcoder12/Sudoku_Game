@@ -4,7 +4,8 @@
 
 using namespace std;
 
-/*main function for calling the functions
+/*main function for calling the functions */
+
 int main()
 {
  Sudoku s;

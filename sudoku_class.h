@@ -25,7 +25,10 @@ namespace s_brd
 			Sudoku(); 
 
 			//function for getting input for each cell of the sudoku
-			void input(); 
+			void input();
+
+			// Function for printing the sudoku board
+			void print_board();
 	}
 }
 

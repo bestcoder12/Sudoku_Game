@@ -69,9 +69,9 @@ void Sudoku::input()
 {
 	
 	/*inputing elements in the 9 x 9 sudoku or board */
-	for(i=0;i<10;i++) 
+	for(i = 0; i < 9; i++) 
 	{
-	    for(j=0;j<10;j++)
+	    for(j = 0; j < 9; j++)
 		{
 			cout << "Enter the location where you want to insert the element" << endl; 
 			cout << "Enter row: "; 
@@ -92,8 +92,32 @@ void Sudoku::input()
 			if(row==i && col==j) 
 			{
 			    cout<<"Enter your Element"<<endl;
-				cin>>a[i][j];	
+				cin >> a[i][j];	
 			}
 		}
 	} 
+}
+
+/* 
+ * This function prints a blank space if the cell has a value of -1 otherwise the 
+ * number is printed 
+ */
+
+void Sudoku::print_board()
+{
+	for (int i = 0; i < 9; i++)
+	{
+		cout << "-----------------------------------" << endl;
+		for (int j = 0; j < 9; j++)
+		{
+			if (board[i][j] == -1)
+			{
+				cout << "|" << " " << "|"; 
+				continue;
+			}
+			cout << "|" << board[i][j] << "|"; 
+		}
+		cout << endl;
+		cout << "-----------------------------------" << endl;
+	}
 }

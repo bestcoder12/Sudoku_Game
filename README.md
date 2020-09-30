@@ -6,7 +6,7 @@ Made by two college students fooling around for their OOPs project.
 
 
 _**Sudoku is a number based game which is played by a single player provided the board
-for the game is already set for him.**_
+for the game is already set for him.**_ (Source: https://en.wikipedia.org/wiki/Sudoku)
 
 The layout of the board is similar to the one given below.
 

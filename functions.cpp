@@ -51,7 +51,7 @@ Sudoku::Sudoku()
 
 	/*
 	 * Initializing the board with invalid values
-     * that is initializing every element or cells of the board as -1
+	 * that is initializing every element or cells of the board as -1
 	 */
 
 	for (int i = 0; i < 9; i++)

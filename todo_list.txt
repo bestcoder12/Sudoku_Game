@@ -1,0 +1,19 @@
+1. Create a board
+2. Initialize the board with invalid values to depict empty cells
+3. Fill specified number of cells, as per difficulty, randomly with numbers 1 to 9 in no particular order
+4. Print the board
+5. Ask the position of the cell, at which number should be entered, from the user
+6. Check whether the cell is filled or not
+7. If filled, print cell already filled and go back to step 5
+8. Else, ask the user a number to be entered at that cell
+9. Check if the number repeats in
+    a) Row, or
+    b) Column, or
+    c) 3x3 box within which the cell is contained.
+10. If in anyone of the a), b) or c) the number is repeated, print wrong number entered and go back to step 8
+11. Else, fill the entered number in the board
+12. Increment the number of cells filled by 1 and decrement the number of cells unfilled by 1
+13. Check if the number of filled cells is equal to number of cells in the board (that is 81)
+14. If no, go back to step 4
+15. Else, print the board and game completed!
+16. Exit the program.

@@ -99,8 +99,8 @@ void Sudoku::input()
 }
 
 /* 
- * This function prints a blank space if the cell has a value of -1 otherwise the 
- * number is printed 
+ * This function prints a blank space if the cell has a value of -1 
+ * otherwise the number is printed 
  */
 
 void Sudoku::print_board()

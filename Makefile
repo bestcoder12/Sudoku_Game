@@ -1,16 +1,33 @@
 CXX=g++
-OBJS=main.o functions.o
-CFLAGS=-Wall -pedantic -ggdb3
+CFLAGS=-Wall -pedantic -Werror -O3
 CXXFLAGS=-std=c++11
+DBGFLAGS=-Wall -pedantic -Werror -std=c++11 -ggdb3 -DDEBUG
+SRCS=$(wildcard *.c)
+OBJS=$(patsubst %.c,%.o,$(SRCS))
+DBOBJS=$(patsubst,%.c,%dbg.o,$(SRCS))
 
-all: game
+# Two versions of the executeable is made, an optimized and a debugging one
 
-main.o: main.c
-	$(CXX) $(CFLAGS) $(CXXFLAGS) -c main.cpp
+all: game game-debug
 
-functions.o: functions.cpp
-	$(CXX) $(CFLAGS) $(CXXFLAGS) -c functions.cpp
+%.o: %.cpp
+	$(CXX) $(CFLAGS) $(CXXFLAGS) -c $<
 
 game: $(OBJS)
-	$(CXX) $(CFLAGS) $(CXXFLAGS) $(OBJS) -o game
+	$(CXX) $(CFLAGS) $(CXXFLAGS) -o $@ $(OBJS) 
 
+game-debug:: $(DBOBJS)
+	$(CXX) $(DBGFLAGS) -o $@ 
+
+%.dbg.o: %.cpp
+	$(CXX) $(DBGFLAGS) -c -o $@ $< 
+
+# PHONEY targets can be called by make clean or make depend as per requirement
+# Clean will remove only the object files either optimized ones or debugging ones
+
+.PHONEY: clean depend all
+clean:
+	rm -f $(OBJS) $(DBOBJS)
+depend:
+	makedepend $(SRCS)
+	makedepend -a -o .dbg.o $(SRCS)

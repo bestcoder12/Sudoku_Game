@@ -10,11 +10,11 @@ using namespace s_brd;
 /* A Default constructor */
 Sudoku::Sudoku() 
 {
-	/* 
-     * Taking a string input for difficulty of the board so as 
-	 *  to enhance the readablity of the code and to remember 
-     *  what value corresponds to which difficulty 
-     */
+	/*
+	 * Taking a string input for difficulty of the board so as 
+	 * to enhance the readablity of the code and to remember 
+	 * what value corresponds to which difficulty 
+	 */
 	
     string Difficulty; 
       
@@ -49,10 +49,11 @@ Sudoku::Sudoku()
     /* remaining cells after removing the filled cells i.e the no of unfilled cells */ 
 	unfilled = 81-filled;
 
-	/* 
-     * Initializing the board with invalid values
-     * that is initializing every element or cells of the board as -1 
-     */
+	/*
+	 * Initializing the board with invalid values
+     * that is initializing every element or cells of the board as -1
+	 */
+
 	for (int i = 0; i < 9; i++)
 	{
 		for (int j = 0; j < 9; j++)

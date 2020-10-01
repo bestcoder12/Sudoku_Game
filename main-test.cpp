@@ -1,5 +1,5 @@
 #ifndef SUDOKU_CLASS_H 
-    #include "sudoku_class.h"
+#include "sudoku_class.h"
 #endif
 
 

@@ -4,7 +4,7 @@ CXXFLAGS=-std=c++11
 DBGFLAGS=-Wall -pedantic -Werror -std=c++11 -ggdb3 -DDEBUG
 SRCS=$(wildcard *.cpp)
 OBJS=$(patsubst %.cpp,%.o,$(SRCS))
-DBOBJS=$(patsubst,%.cpp,%dbg.o,$(SRCS))
+#DBOBJS=$(patsubst,%.cpp,%dbg.o,$(SRCS))
 
 # Two versions of the executeable is made, an optimized and a debugging one
 
@@ -16,11 +16,11 @@ all: game game-debug
 game: $(OBJS)
 	$(CXX) $(CFLAGS) $(CXXFLAGS) -o $@ $(OBJS) 
 
-%.dbg.o: %.cpp
-	$(CXX) $(DBGFLAGS) -c -o $@ $< 
+#%.dbg.o: %.cpp
+#	$(CXX) $(DBGFLAGS) -c -o $@ $< 
 
-game-debug:: $(DBOBJS)
-	$(CXX) $(DBGFLAGS) -o $@ 
+#game-debug:: $(DBOBJS)
+#	$(CXX) $(DBGFLAGS) -o $@ 
 
 
 # PHONEY targets can be called by make clean or make depend as per requirement

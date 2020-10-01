@@ -68,19 +68,17 @@ Sudoku::Sudoku()
 void Sudoku::input() 
 {
 	int row = 0,col = 0;
+	cout << "Enter the location where you want to insert the element" << endl; 
+	cout << "Enter row: "; 
+	cin >> row;			
+	cout << "Enter column "; 
+	cin >> col;
+	
 	/*inputing elements in the 9 x 9 sudoku or board */
 	for(int i = 0; i < 9; i++) 
 	{
 	    for(int j = 0; j < 9; j++)
-		{
-			cout << "Enter the location where you want to insert the element" << endl; 
-			cout << "Enter row: "; 
-			cin >> row;
-					
-			cout << "Enter column "; 
-			cin >> col;
-					
-		
+		{			
 			if (row > 8 || row < 0 || col < 0 || col > 8) 			                                                                                         
 			{
 				cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
@@ -107,17 +105,17 @@ void Sudoku::print_board()
 {
 	for (int i = 0; i < 9; i++)
 	{
-		cout << "-----------------------------------" << endl;
+		cout << "-------------------" << endl;
 		for (int j = 0; j < 9; j++)
 		{
 			if (board[i][j] == -1)
 			{
-				cout << "|" << " " << "|"; 
+				cout << "|" << " "; 
 				continue;
 			}
-			cout << "|" << board[i][j] << "|"; 
+			cout << "|" << board[i][j]; 
 		}
-		cout << endl;
-		cout << "-----------------------------------" << endl;
+		cout << "|" << endl;
 	}
+	cout << "-------------------" << endl;
 }

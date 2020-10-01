@@ -1,6 +1,7 @@
-#include "sudoku_class.h"
 #ifndef SUDOKU_CLASS_H 
-#define
+    #include "sudoku_class.h"
+#endif
+
 
 using namespace std;
 

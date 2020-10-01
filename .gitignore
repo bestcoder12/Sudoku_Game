@@ -1,6 +1,5 @@
 *.o
 game
-game-debug
 CMakeCache.txt
 CMakeFiles
 cmake_install.cmake

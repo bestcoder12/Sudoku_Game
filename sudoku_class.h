@@ -1,5 +1,5 @@
 #ifndef SUDOKU_CLASS_H 
-#define
+#define SUDOKU_CLASS_H 
 
 namespace s_brd
 {
@@ -29,7 +29,7 @@ namespace s_brd
 
 			// Function for printing the sudoku board
 			void print_board();
-	}
+	};
 }
 
 #endif	/* SUDOKU_CLASS_H */

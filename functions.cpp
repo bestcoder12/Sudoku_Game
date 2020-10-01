@@ -67,11 +67,11 @@ Sudoku::Sudoku()
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 
 {
-	
+	int row = 0,col = 0;
 	/*inputing elements in the 9 x 9 sudoku or board */
-	for(i = 0; i < 9; i++) 
+	for(int i = 0; i < 9; i++) 
 	{
-	    for(j = 0; j < 9; j++)
+	    for(int j = 0; j < 9; j++)
 		{
 			cout << "Enter the location where you want to insert the element" << endl; 
 			cout << "Enter row: "; 
@@ -92,7 +92,7 @@ void Sudoku::input()
 			if(row==i && col==j) 
 			{
 			    cout<<"Enter your Element"<<endl;
-				cin >> a[i][j];	
+				cin >> board[i][j];	
 			}
 		}
 	} 

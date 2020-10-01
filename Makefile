@@ -16,11 +16,12 @@ all: game game-debug
 game: $(OBJS)
 	$(CXX) $(CFLAGS) $(CXXFLAGS) -o $@ $(OBJS) 
 
+%.dbg.o: %.cpp
+	$(CXX) $(DBGFLAGS) -c -o $@ $< 
+
 game-debug:: $(DBOBJS)
 	$(CXX) $(DBGFLAGS) -o $@ 
 
-%.dbg.o: %.cpp
-	$(CXX) $(DBGFLAGS) -c -o $@ $< 
 
 # PHONEY targets can be called by make clean or make depend as per requirement
 # Clean will remove only the object files either optimized ones or debugging ones

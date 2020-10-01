@@ -5,6 +5,8 @@
 
 using namespace std;
 
+using namespace s_brd;
+
 /*main function for calling the functions */
 
 int main()
@@ -14,7 +16,6 @@ int main()
  
  /* calling the functions sudoku,input and print */
  
- s.Sudoku();
  s.input();
  s.print_board();
  

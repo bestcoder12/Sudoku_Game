@@ -2,9 +2,9 @@ CXX=g++
 CFLAGS=-Wall -pedantic -Werror -O3
 CXXFLAGS=-std=c++11
 DBGFLAGS=-Wall -pedantic -Werror -std=c++11 -ggdb3 -DDEBUG
-SRCS=$(wildcard *.c)
-OBJS=$(patsubst %.c,%.o,$(SRCS))
-DBOBJS=$(patsubst,%.c,%dbg.o,$(SRCS))
+SRCS=$(wildcard *.cpp)
+OBJS=$(patsubst %.cpp,%.o,$(SRCS))
+DBOBJS=$(patsubst,%.cpp,%dbg.o,$(SRCS))
 
 # Two versions of the executeable is made, an optimized and a debugging one
 

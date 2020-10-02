@@ -15,8 +15,12 @@ void sudoku:: repeat()
 			
 			for(s=0;s<9;s++)
 			{
-			   if(board[l][k]== board[l+s][k] || board[l][k]== board[l][k+s])
+			/*check if the element is repating or not */
+			
+			   if(board[l][k]== board[l+s][k] || board[l][k]== board[l][k+s]) 
 			   {
+				   /*This statement confirms if the elements repating belong to the same row or column */
+				   
 				   if(l==(l+s) || k== (k+s))
 			            count++;
 			   }   

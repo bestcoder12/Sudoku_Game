@@ -18,11 +18,12 @@ Sudoku::Sudoku()
 	
     string Difficulty; 
       
-    cout << "Enter the level of difficulty: "<<endl;
+    cout << "Choose the difficulty from one of the below options: "<<endl;
 	cout << "\t1. Easy" <<endl;
 	cout << "\t2. Medium" <<endl;
 	cout << "\t3. Hard" <<endl;
-			
+	cout << "\n" << endl;
+	cout << "Your choice: ";		
 	getline(cin,Difficulty); 
 		
 	
@@ -42,8 +43,8 @@ Sudoku::Sudoku()
 	}
 	else
 	{
-		
-		filled = 60; 
+		cout << "Invalid option selected, defaulting to Easy...";
+		filled = 60;
 	}
 
     /* remaining cells after removing the filled cells i.e the no of unfilled cells */ 
@@ -62,38 +63,130 @@ Sudoku::Sudoku()
 		}
 	}
 }		
-		
+
+int Sudoku::chk_num(int temp_num, int t_row, int t_col)
+{
+	if (temp_num > 9 || temp_num < 1)
+	{
+		return -1;
+	}
+	int i = 0, j = 0;
+	for (j = 0; j < 8; j++)
+	{
+		if (temp_num == board[t_row][j])
+		{
+			return -1;
+		}
+	}
+	
+	for (i = 0; i < 8; i++)
+	{
+		if (temp_num == board[i][t_col])
+		{
+			return -1;
+		}
+	}
+
+	i = t_row - (t_row%3);
+	j = t_col - (t_col%3);
+	int row_lim = i+3;
+	int col_lim = j+3;
+
+	for (i; i < row_lim; i++)
+	{
+		for (j; j < col_lim; j++)
+		{
+			if (temp_num == board[i][j])
+			{
+				return -1;
+			}
+		}
+	}
+	return 0;
+}		
 
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 
 {
-	int row = 0,col = 0;
-	cout << "Enter the location where you want to insert the element" << endl; 
-	cout << "Enter row: "; 
-	cin >> row;			
-	cout << "Enter column "; 
+	int row = 0,col = 0, inp_num = 0, err_cd = 0, cnt = 0;
+	 string loc, num;
+
+	/* Asking the location of the box in which to enter the number */
+	cout << "Enter the location where you want to insert the element in the format (x,y): "; 
+	getline(cin,loc); 
+	/*cin >> row; 
+	row -= 1;
 	cin >> col;
-	
-	/*inputing elements in the 9 x 9 sudoku or board */
+	col -= 1;*/
+
+	/* Declaring a string iterator to traverse the string character by character */
+	string::iterator it = loc.begin();
+	char c_to_num[2];
+
+	for (it; *it != ','; it++)
+	{
+		if (*it == '(' || *it == ' ')
+		{
+			continue;
+		}
+		if (cnt > 1)
+		{
+			break;
+		}
+		c_to_num[cnt] = *it;
+		cnt++;	
+	}
+	row = atoi(c_to_num);
+	row -= 1;
+	cnt = 0;
+
+	for (it; *it != ')'; it++)
+	{
+		if (*it == ' ' || *it == ',')
+		{
+			continue;
+		}
+		if (cnt > 1)
+		{
+			break;
+		}
+		c_to_num[cnt] = *it;
+		cnt++;
+	}
+	col = atoi(c_to_num);
+	col -= 1;
+
+	if (row > 8 || row < 0 || col < 0 || col > 8) 			                                                                                         
+	{
+		cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
+		return;
+	}
+
+	cout << "Enter your Element: ";
+	getline(cin,num);
+	inp_num = stod(num);
+
+	/* Checking the entered number for repetition in row, column or box. */
+	err_cd = chk_num(inp_num,row,col);
+	if (err_cd == -1)
+	{
+		cout << "The number you entered at " << "(" << row << "," << col << ")" << " repeats in a row, column or box." << endl;
+		return;
+	}
+
+	/* Inputing the element in the 9 x 9 sudoku or board */
 	for(int i = 0; i < 9; i++) 
 	{
 	    for(int j = 0; j < 9; j++)
 		{			
-			if (row > 8 || row < 0 || col < 0 || col > 8) 			                                                                                         
+			if(row == i && col == j) 
 			{
-				cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
-				
-				/*skips or jumps out of the condition if the row or column lies outside the range*/
-				continue; 
-			}
-			
-			if(row==i && col==j) 
-			{
-			    cout<<"Enter your Element"<<endl;
-				cin >> board[i][j];	
+				board[i][j] = inp_num;
+				cout << "Number entered successfully!" << endl; 
+
 			}
 		}
-	} 
+	}
 }
 
 /* 
@@ -105,17 +198,19 @@ void Sudoku::print_board()
 {
 	for (int i = 0; i < 9; i++)
 	{
-		cout << "-------------------" << endl;
+		cout << "-------------------------------------" << endl;
 		for (int j = 0; j < 9; j++)
 		{
 			if (board[i][j] == -1)
 			{
-				cout << "|" << " "; 
+				cout << "|" << "   "; 
+				
+				/*skips or jumps out of the condition if the row or column lies outside the range*/
 				continue;
 			}
-			cout << "|" << board[i][j]; 
+			cout << "| " << board[i][j] << " "; 
 		}
 		cout << "|" << endl;
 	}
-	cout << "-------------------" << endl;
+	cout << "-------------------------------------" << endl;
 }

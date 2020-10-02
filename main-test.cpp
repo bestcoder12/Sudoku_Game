@@ -1,3 +1,5 @@
+# include <iostream>
+
 #ifndef SUDOKU_CLASS_H 
 #include "sudoku_class.h"
 #endif
@@ -12,13 +14,10 @@ using namespace s_brd;
 int main()
 {
  Sudoku s;
- 
- 
  /* calling the functions sudoku,input and print */
- 
- s.input();
- s.print_board();
- 
-	
-	
+ for (;;)
+ {
+    s.print_board();
+    s.input();
+ }	
 }

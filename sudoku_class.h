@@ -21,14 +21,18 @@ namespace s_brd
 		
 		public: 
 			
-			// Default constructor for creating the board initially
+			/* Default constructor for creating the board initially */
 			Sudoku(); 
+
+			/* Function for checking whether the entered number is repeated or not*/
+			int chk_num(int temp_num,int t_row, int t_col);
 
 			//function for getting input for each cell of the sudoku
 			void input();
 
 			// Function for printing the sudoku board
 			void print_board();
+
 	};
 }
 

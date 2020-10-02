@@ -27,6 +27,17 @@ void sudoku:: repeat()
 			            count++;
 			   }  
 			
+				for(t=0;i<l+3;i++)
+				{
+					for(p=0;j<k+3;j++)
+					{
+						for(h=0;k<l+3;h++)
+						{
+							for(m=0;m<k+3;m++)
+							{
+								if(board[t][p]==board[h][m])
+									cout<<"Num
+									
 
 			   
 			   if(count>1)

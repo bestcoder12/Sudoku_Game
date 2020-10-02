@@ -27,16 +27,24 @@ void sudoku:: repeat()
 			            count++;
 			   }  
 			
-				for(t=0;i<l+3;i++)
+				for(t=0;T<l+3;i++)
 				{
-					for(p=0;j<k+3;j++)
+					for(p=0;P<k+3;j++)
 					{
-						for(h=0;k<l+3;h++)
+						for(h=0;H<l+3;h++)
 						{
 							for(m=0;m<k+3;m++)
 							{
 								if(board[t][p]==board[h][m])
-									cout<<"Num
+									cout<<"Number is repeating"<<endl;
+								         count++;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 									
 
 			   

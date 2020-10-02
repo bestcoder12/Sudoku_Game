@@ -3,6 +3,8 @@
 void sudoku:: repeat()
 {
 	int l,k,s;
+	int t,p;
+	
 	
 	int count=0;
 	
@@ -11,21 +13,23 @@ void sudoku:: repeat()
 	{
 		for(k=0;k<9;k++)
 		{
+		
 			/*loop to add numbers from 0-9 to the each row and column for comparing the elements are repeating or not */
-			
 			for(s=0;s<9;s++)
 			{
-			/*check if the element is repating or not */
+			/*check if the element repeats itself in its row or column*/
 			
 			   if(board[l][k]== board[l+s][k] || board[l][k]== board[l][k+s]) 
 			   {
-				   /*This statement confirms if the elements repating belong to the same row or column */
+				   
 				   
 				   if(l==(l+s) || k== (k+s))
 			            count++;
-			   }   
+			   }  
+			
+
 			   
-			   else if(count>1)
+			   if(count>1)
 			   cout<<"Number is Repeating"<endl;
 			   break;
 			   

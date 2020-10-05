@@ -8,12 +8,17 @@ int random()
   {
     random_no=(rand()%9)+1;
     
-    for(i=0;i<9;i++)
+    for(l=0;i<9;i++)
     {
-      for(j=0;j<9;j++)
+      for(k=0;j<9;j++)
       {
         
-        filled[i][j]=random_no;
+        if(board[i][j]!=filled[l][k]))
+        {
+          if(i <=row_lim || j<=col_num )
+          {
+              filled[i][j]=random_no;
+          }
         
       } 
       

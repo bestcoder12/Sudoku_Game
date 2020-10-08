@@ -29,17 +29,17 @@ Sudoku::Sudoku()
 	
     if(Difficulty.compare("Easy") == 0) 
 	{			
-		filled = 60; 
+		filled = 45; 
 	}
 	else if(Difficulty.compare("Medium") == 0)
 	{ 
 		
-		filled = 50; 
+		filled = 30; 
 	}
 	else if(Difficulty.compare("Hard") == 0)
 	{
 		
-		filled = 40;  
+		filled = 20;  
 	}
 	else
 	{
@@ -103,7 +103,35 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 		}
 	}
 	return 0;
-}		
+}
+
+/* Function for initializing board with random numbers */
+void Sudoku::rand_init()
+{
+	int i = 0, j = 0, num = 0, err_chk = 0;
+	int fld_num = filled;
+	while (fld_num > 0)
+	{
+		i = random() % 9;
+		j = random() % 9;
+		if (board[i][j] != -1)
+		{
+			continue;
+		}
+		num = random() % 10;
+		if (num == 0)
+		{
+			continue;
+		}
+		err_chk = this->chk_num(num,i,j);
+		if (err_chk == -1)
+		{
+			continue;
+		}
+		board[i][j] = num;
+		fld_num--;
+	}
+}
 
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 

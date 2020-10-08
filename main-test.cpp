@@ -14,6 +14,7 @@ using namespace s_brd;
 int main()
 {
  Sudoku s;
+ s.rand_init();
  /* calling the functions sudoku,input and print */
  for (;;)
  {

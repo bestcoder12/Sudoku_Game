@@ -15,7 +15,7 @@ int main()
  
  
  /* calling the functions sudoku,input and print */
- 
+ s.random();
  s.input();
  s.print_board();
  

@@ -1,4 +1,5 @@
 # include <iostream>
+#include <cstdlib>
 
 #ifndef SUDOKU_CLASS_H 
 #include "sudoku_class.h"
@@ -14,7 +15,7 @@ using namespace s_brd;
 int main()
 {
  Sudoku s;
- s.rand_init();
+ //s.rand_init();
  int err_chk = 0;
  /* calling the functions sudoku,input and print */
  for (;;)

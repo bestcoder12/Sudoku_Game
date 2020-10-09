@@ -34,7 +34,7 @@ namespace s_brd
 			void print_board();
 
 			// Function for initializing board with random numbers
-			void rand_init();
+			//void rand_init();
 
 	};
 }

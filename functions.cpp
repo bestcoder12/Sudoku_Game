@@ -92,9 +92,9 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	int row_lim = i+3;
 	int col_lim = j+3;
 
-	while( i < row_lim )
+	for (; i < row_lim; i++)
 	{
-		while ( j < col_lim )
+		for (; j < col_lim; j++)
 		{
 			if (temp_num == board[i][j])
 			{
@@ -108,7 +108,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 }
 
 /* Function for initializing board with random numbers */
-void Sudoku::rand_init()
+/*void Sudoku::rand_init()
 {
 	int i = 0, j = 0, num = 0, err_chk = 0;
 	int fld_num = filled;
@@ -133,7 +133,7 @@ void Sudoku::rand_init()
 		board[i][j] = num;
 		fld_num--;
 	}
-}
+}*/
 
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 
@@ -144,16 +144,12 @@ void Sudoku::input()
 	/* Asking the location of the box in which to enter the number */
 	cout << "Enter the location where you want to insert the element in the format (x,y): "; 
 	getline(cin,loc); 
-	/*cin >> row; 
-	row -= 1;
-	cin >> col;
-	col -= 1;*/
 
 	/* Declaring a string iterator to traverse the string character by character */
 	string::iterator it = loc.begin();
 	char c_to_num[2];
 
-	while ( *it != ',' )
+	for (; *it != ','; it++)
 	{
 		if (*it == '(' || *it == ' ')
 		{
@@ -165,13 +161,12 @@ void Sudoku::input()
 		}
 		c_to_num[cnt] = *it;
 		cnt++;
-		it++;	
 	}
 	row = atoi(c_to_num);
 	row -= 1;
 	cnt = 0;
 
-	while( *it != ')' )
+	for (; *it != ')'; it++)
 	{
 		if (*it == ' ' || *it == ',')
 		{
@@ -183,7 +178,6 @@ void Sudoku::input()
 		}
 		c_to_num[cnt] = *it;
 		cnt++;
-		it++;
 	}
 	col = atoi(c_to_num);
 	col -= 1;

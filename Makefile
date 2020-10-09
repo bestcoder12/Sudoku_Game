@@ -1,7 +1,6 @@
 CXX=g++
-CFLAGS=-Wall -pedantic -Werror -O3
+CFLAGS=-Wall -pedantic -Werror -ggdb3
 CXXFLAGS=-std=c++11
-DBGFLAGS=-Wall -pedantic -Werror -std=c++11 -ggdb3 -DDEBUG
 SRCS=$(wildcard *.cpp)
 OBJS=$(patsubst %.cpp,%.o,$(SRCS))
 

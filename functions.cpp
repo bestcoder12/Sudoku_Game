@@ -92,15 +92,17 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	int row_lim = i+3;
 	int col_lim = j+3;
 
-	for (i; i < row_lim; i++)
+	while( i < row_lim )
 	{
-		for (j; j < col_lim; j++)
+		while ( j < col_lim )
 		{
 			if (temp_num == board[i][j])
 			{
 				return -1;
 			}
+			j++;
 		}
+		i++;
 	}
 	return 0;
 }
@@ -151,7 +153,7 @@ void Sudoku::input()
 	string::iterator it = loc.begin();
 	char c_to_num[2];
 
-	for (it; *it != ','; it++)
+	while ( *it != ',' )
 	{
 		if (*it == '(' || *it == ' ')
 		{
@@ -162,13 +164,14 @@ void Sudoku::input()
 			break;
 		}
 		c_to_num[cnt] = *it;
-		cnt++;	
+		cnt++;
+		it++;	
 	}
 	row = atoi(c_to_num);
 	row -= 1;
 	cnt = 0;
 
-	for (it; *it != ')'; it++)
+	while( *it != ')' )
 	{
 		if (*it == ' ' || *it == ',')
 		{
@@ -180,6 +183,7 @@ void Sudoku::input()
 		}
 		c_to_num[cnt] = *it;
 		cnt++;
+		it++;
 	}
 	col = atoi(c_to_num);
 	col -= 1;

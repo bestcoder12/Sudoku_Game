@@ -59,7 +59,7 @@ Sudoku::Sudoku()
 	{
 		for (int j = 0; j < 9; j++)
 		{
-			board[i][j] = -1; 
+			board[i][j].set_Val(-1,true); 
 		}
 	}
 }		
@@ -73,7 +73,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	int i = 0, j = 0;
 	for (j = 0; j < 8; j++)
 	{
-		if (temp_num == board[t_row][j])
+		if (temp_num == board[t_row][j].get_int())
 		{
 			return -1;
 		}
@@ -81,7 +81,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	
 	for (i = 0; i < 8; i++)
 	{
-		if (temp_num == board[i][t_col])
+		if (temp_num == board[i][t_col].get_int())
 		{
 			return -1;
 		}
@@ -96,7 +96,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	{
 		for (; j < col_lim; j++)
 		{
-			if (temp_num == board[i][j])
+			if (temp_num == board[i][j].get_int())
 			{
 				return -1;
 			}
@@ -107,33 +107,6 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	return 0;
 }
 
-/* Function for initializing board with random numbers */
-/*void Sudoku::rand_init()
-{
-	int i = 0, j = 0, num = 0, err_chk = 0;
-	int fld_num = filled;
-	while (fld_num > 0)
-	{
-		i = random() % 9;
-		j = random() % 9;
-		if (board[i][j] != -1)
-		{
-			continue;
-		}
-		num = random() % 10;
-		if (num == 0)
-		{
-			continue;
-		}
-		err_chk = this->chk_num(num,i,j);
-		if (err_chk == -1)
-		{
-			continue;
-		}
-		board[i][j] = num;
-		fld_num--;
-	}
-}*/
 
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 
@@ -188,6 +161,12 @@ void Sudoku::input()
 		return;
 	}
 
+	if (board[row][col].get_editable() == false)
+	{
+		cout << "Error! This is already filled cell. Please enter the position again.\n" << endl;
+		return;
+	}
+
 	cout << "Enter your Element: ";
 	getline(cin,num);
 	inp_num = stod(num);
@@ -200,19 +179,11 @@ void Sudoku::input()
 		return;
 	}
 
-	/* Inputing the element in the 9 x 9 sudoku or board */
-	for(int i = 0; i < 9; i++) 
-	{
-	    for(int j = 0; j < 9; j++)
-		{			
-			if(row == i && col == j) 
-			{
-				board[i][j] = inp_num;
-				cout << "Number entered successfully!" << endl; 
+	/* Inputing the element in the 9 x 9 sudoku board */
+	
+	board[row][col].set_Val(inp_num,true);
+	cout << "Number entered successfully!" << endl; 
 
-			}
-		}
-	}
 }
 
 /* 
@@ -227,14 +198,14 @@ void Sudoku::print_board()
 		cout << "-------------------------------------" << endl;
 		for (int j = 0; j < 9; j++)
 		{
-			if (board[i][j] == -1)
+			if (board[i][j].get_int() == -1)
 			{
 				cout << "|" << "   "; 
 				
 				/*skips or jumps out of the condition if the row or column lies outside the range*/
 				continue;
 			}
-			cout << "| " << board[i][j] << " "; 
+			cout << "| " << board[i][j].get_int() << " "; 
 		}
 		cout << "|" << endl;
 	}

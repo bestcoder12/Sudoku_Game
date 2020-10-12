@@ -3,6 +3,33 @@
 
 namespace s_brd
 {
+	/*
+	 * Cell is a class for each individual cell 
+	 * so as to avoid editing system filled cells by the user
+	 * 
+	 * PS: This class will also be useful for graphicss
+	 */	
+	class cell
+	{
+		private:
+			int num;
+			bool editable;
+		
+		public:
+			void set_Val(int t_num, bool edit_r_not)
+			{
+				num = t_num;
+				editable = edit_r_not;
+			}
+			int get_int()
+			{
+				return num;
+			}
+			bool get_editable()
+			{
+				return editable;
+			}
+	};
 
 	/*
 	* Class sudoku creates a sudoku board with 9 cells in a row and 9 rows 
@@ -13,7 +40,7 @@ namespace s_brd
 	{
 		private: 
 			/* To design a 9x9 board for sudoku */
-				int board[9][9]; 
+				cell board[9][9]; 
 			/* contains the number of cells filled in sudoku */
 				int filled; 
 			/* contains the number of unfilled or empty cells in sudoku */

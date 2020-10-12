@@ -6,7 +6,25 @@
 
 using namespace std; 
 using namespace s_brd;
-	
+
+/* Functions of class cell set_Val, get_Int and get_Editable */
+
+void cell::set_Val(int t_num, bool edit_r_not)
+{
+	num = t_num;
+	editable = edit_r_not;
+}
+
+int cell::get_Int()
+{
+	return num;
+}
+
+bool cell::get_Editable()
+{
+	return editable;
+}
+
 /* A Default constructor */
 Sudoku::Sudoku() 
 {
@@ -73,7 +91,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	int i = 0, j = 0;
 	for (j = 0; j < 8; j++)
 	{
-		if (temp_num == board[t_row][j].get_int())
+		if (temp_num == board[t_row][j].get_Int())
 		{
 			return -1;
 		}
@@ -81,7 +99,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	
 	for (i = 0; i < 8; i++)
 	{
-		if (temp_num == board[i][t_col].get_int())
+		if (temp_num == board[i][t_col].get_Int())
 		{
 			return -1;
 		}
@@ -96,7 +114,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	{
 		for (; j < col_lim; j++)
 		{
-			if (temp_num == board[i][j].get_int())
+			if (temp_num == board[i][j].get_Int())
 			{
 				return -1;
 			}
@@ -161,7 +179,7 @@ void Sudoku::input()
 		return;
 	}
 
-	if (board[row][col].get_editable() == false)
+	if (board[row][col].get_Editable() == false)
 	{
 		cout << "Error! This is already filled cell. Please enter the position again.\n" << endl;
 		return;
@@ -198,14 +216,14 @@ void Sudoku::print_board()
 		cout << "-------------------------------------" << endl;
 		for (int j = 0; j < 9; j++)
 		{
-			if (board[i][j].get_int() == -1)
+			if (board[i][j].get_Int() == -1)
 			{
 				cout << "|" << "   "; 
 				
 				/*skips or jumps out of the condition if the row or column lies outside the range*/
 				continue;
 			}
-			cout << "| " << board[i][j].get_int() << " "; 
+			cout << "| " << board[i][j].get_Int() << " "; 
 		}
 		cout << "|" << endl;
 	}

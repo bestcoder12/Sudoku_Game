@@ -14,23 +14,27 @@ namespace s_brd
 	class cell
 	{
 		private:
-			int num;
-			bool editable;
+			
+			/* Number contained within each cell */
+				int num;
+			
+			/* 
+			 * Number in the cell editable or not. 
+			 * To avoid overwriting system generated (random) numbers.
+			 */
+				bool editable;
 		
 		public:
-			void set_Val(int t_num, bool edit_r_not)
-			{
-				num = t_num;
-				editable = edit_r_not;
-			}
-			int get_int()
-			{
-				return num;
-			}
-			bool get_editable()
-			{
-				return editable;
-			}
+			
+			/* Function to set values of each cell object */
+			void set_Val(int t_num, bool edit_r_not);
+			
+			/* Function to get the number in each cell for further use */
+			int get_Int();
+
+			/* Function to get the editable property of each cell */
+			bool get_Editable();
+			
 	};
 
 	/*
@@ -41,6 +45,7 @@ namespace s_brd
 	class Sudoku 
 	{
 		private: 
+			
 			/* To design a 9x9 board for sudoku */
 				cell board[9][9]; 
 			/* contains the number of cells filled in sudoku */
@@ -56,14 +61,11 @@ namespace s_brd
 			/* Function for checking whether the entered number is repeated or not*/
 			int chk_num(int temp_num,int t_row, int t_col);
 
-			//function for getting input for each cell of the sudoku
+			/* Function for getting input for each cell of the sudoku */
 			void input();
 
-			// Function for printing the sudoku board
+			/* Function for printing the sudoku board */
 			void print_board();
-
-			// Function for initializing board with random numbers
-			//void rand_init();
 
 	};
 }

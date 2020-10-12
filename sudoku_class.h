@@ -7,8 +7,10 @@ namespace s_brd
 	 * Cell is a class for each individual cell 
 	 * so as to avoid editing system filled cells by the user
 	 * 
+	 * 
 	 * PS: This class will also be useful for graphicss
 	 */	
+	
 	class cell
 	{
 		private:
@@ -32,9 +34,9 @@ namespace s_brd
 	};
 
 	/*
-	* Class sudoku creates a sudoku board with 9 cells in a row and 9 rows 
-	* that is it has 81 cells in the whole board.
-	*/
+	 * Class sudoku creates a sudoku board with 9 cells in a row and 9 rows 
+	 * that is it has 81 cells in the whole board.
+	 */
 
 	class Sudoku 
 	{

@@ -61,13 +61,14 @@ namespace s_brd
 			/* Function for checking whether the entered number is repeated or not*/
 			int chk_num(int temp_num,int t_row, int t_col);
 
+			/* Function for initializing the board with random numbers */
+			void random();
+
 			/* Function for getting input for each cell of the sudoku */
 			void input();
 
 			/* Function for printing the sudoku board */
-			void print_board();
-
-			void random();
+			void print_board();			
 	};
 }
 

@@ -38,9 +38,9 @@ Sudoku::Sudoku()
     string Difficulty; 
       
     cout << "Choose the difficulty from one of the below options: "<<endl;
-	cout << "\t1. Easy" <<endl;
-	cout << "\t2. Medium" <<endl;
-	cout << "\t3. Hard" <<endl;
+	cout << "\n\tEasy\n";
+	cout << "\tMedium\n";
+	cout << "\tHard" <<endl;
 	cout << "\n" << endl;
 	cout << "Your choice: ";		
 	getline(cin,Difficulty); 
@@ -62,7 +62,7 @@ Sudoku::Sudoku()
 	}
 	else
 	{
-		cout << "Invalid option selected, defaulting to Easy...";
+		cout << "Invalid option selected, defaulting to Easy..." << endl;
 		filled = 60;
 	}
 
@@ -125,12 +125,13 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	return 0;
 }
 
+/* Function for initializing the board with random numbers */
 void Sudoku::random() 
 {
-  srand((unsigned)time(NULL));
+	srand((unsigned)time(NULL));
   
-  int random_no,f,z,s=0;
-  int error = 0;
+	int random_no,f,z,s=0;
+	int error = 0;
    
 	while(s<filled)
 	{
@@ -147,8 +148,7 @@ void Sudoku::random()
 				s++;
 	     	}
 		}
-	}
-         
+	}       
 }
 
 /* Input function for getting the row ,column and the element*/

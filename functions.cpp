@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string> 
+#include <ctime>
 
 /* Header file for definition of the class Sudoku */
 #include "sudoku_class.h"
@@ -118,13 +119,36 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 			{
 				return -1;
 			}
-			j++;
 		}
-		i++;
 	}
 	return 0;
 }
 
+void Sudoku::random() 
+{
+  srand((unsigned)time(NULL));
+  
+  int random_no,f,z,s=0;
+  int error = 0;
+   
+	while(s<filled)
+	{
+		random_no=(rand()%9)+1;
+		f=rand()%9;
+		z=rand()%9; 
+		error = chk_num(random_no,f,z);
+	  
+	  	if(board[f][z].get_Editable() == true) 
+	   	{
+			if(error == 0)
+			{
+				board[f][z].set_Val(random_no,false);
+				s++;
+	     	}
+		}
+	}
+         
+}
 
 /* Input function for getting the row ,column and the element*/
 void Sudoku::input() 

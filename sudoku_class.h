@@ -67,6 +67,7 @@ namespace s_brd
 			/* Function for printing the sudoku board */
 			void print_board();
 
+			void random();
 	};
 }
 

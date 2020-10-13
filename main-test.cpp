@@ -17,6 +17,7 @@ int main()
  Sudoku s;
  s.random();
  int err_chk = 0;
+ 
  /* calling the functions sudoku,input and print */
  for (;;)
  {

@@ -24,14 +24,14 @@ int main()
     {
     	cout << "Unable to clear the screen." << endl;
     }
-    /*for (int i = 0; i < 500000000; i++)
+    for (int i = 0; i < 500000000; i++)
     {}
 	#ifdef __linux__
 		err_chk = system("clear");
 	#endif
 	#ifdef _WIN32
 		err_chk = system("cls");
-	#endif*/
+	#endif
     s.print_board();
     s.input();
  }	

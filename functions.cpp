@@ -111,9 +111,9 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	int row_lim = i+3;
 	int col_lim = j+3;
 
-	for (; i < row_lim; i++)
+	for (i = t_row - (t_row%3); i < row_lim; i++)
 	{
-		for (; j < col_lim; j++)
+		for (j = t_col - (t_col%3); j < col_lim; j++)
 		{
 			if (temp_num == board[i][j].get_Int())
 			{

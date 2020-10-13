@@ -89,7 +89,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 		return -1;
 	}
 	int i = 0, j = 0;
-	for (j = 0; j < 8; j++)
+	for (j = 0; j < 9; j++)
 	{
 		if (temp_num == board[t_row][j].get_Int())
 		{
@@ -97,7 +97,7 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 		}
 	}
 	
-	for (i = 0; i < 8; i++)
+	for (i = 0; i < 9; i++)
 	{
 		if (temp_num == board[i][t_col].get_Int())
 		{

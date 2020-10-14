@@ -18,7 +18,8 @@ int main(int argc, char const *argv[])
 {
     if (argc != 1)
     {
-        cerr << "Usage: ./game\n Or game.exe";    
+        cerr << "Usage: ./game\n Or game.exe\n"; 
+        return -2;
     }
 
     Sudoku s;

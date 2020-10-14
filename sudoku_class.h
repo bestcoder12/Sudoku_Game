@@ -65,10 +65,13 @@ namespace s_brd
 			void random();
 
 			/* Function for getting input for each cell of the sudoku */
-			void input();
+			int input();
 
 			/* Function for printing the sudoku board */
-			void print_board();			
+			void print_board();
+
+			/* Function for checking the game for completion */
+			int	chk_win();		
 	};
 }
 

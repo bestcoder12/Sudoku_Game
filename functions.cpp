@@ -66,9 +66,6 @@ Sudoku::Sudoku()
 		filled = 60;
 	}
 
-    /* remaining cells after removing the filled cells i.e the no of unfilled cells */ 
-	unfilled = 81-filled;
-
 	/*
 	 * Initializing the board with invalid values
 	 * that is initializing every element or cells of the board as -1
@@ -152,14 +149,19 @@ void Sudoku::random()
 }
 
 /* Input function for getting the row ,column and the element*/
-void Sudoku::input() 
+int Sudoku::input() 
 {
 	int row = 0,col = 0, inp_num = 0, err_cd = 0, cnt = 0;
 	 string loc, num;
 
 	/* Asking the location of the box in which to enter the number */
 	cout << "Enter the location where you want to insert the element in the format (x,y): "; 
-	getline(cin,loc); 
+	getline(cin,loc);
+
+	if ( loc == " #!Q" || loc == "#!Q" )
+	{
+		return -1;
+	} 
 
 	/* Declaring a string iterator to traverse the string character by character */
 	string::iterator it = loc.begin();
@@ -201,17 +203,23 @@ void Sudoku::input()
 	if (row > 8 || row < 0 || col < 0 || col > 8) 			                                                                                         
 	{
 		cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
-		return;
+		return -2;
 	}
 
 	if (board[row][col].get_Editable() == false)
 	{
 		cout << "Error! This is already filled cell. Please enter the position again.\n" << endl;
-		return;
+		return -2;
 	}
 
 	cout << "Enter your Element: ";
 	getline(cin,num);
+
+	if ( num == "#!Q" || num == " #!Q" )
+	{
+		return -1;
+	} 
+	
 	inp_num = stod(num);
 
 	/* Checking the entered number for repetition in row, column or box. */
@@ -219,7 +227,7 @@ void Sudoku::input()
 	if (err_cd == -1)
 	{
 		cout << "The number you entered at " << "(" << row << "," << col << ")" << " repeats in a row, column or box." << endl;
-		return;
+		return -2;
 	}
 
 	/* Inputing the element in the 9 x 9 sudoku board */
@@ -227,6 +235,7 @@ void Sudoku::input()
 	board[row][col].set_Val(inp_num,true);
 	cout << "Number entered successfully!" << endl; 
 
+	return 0;
 }
 
 /* 
@@ -253,4 +262,28 @@ void Sudoku::print_board()
 		cout << "|" << endl;
 	}
 	cout << "-------------------------------------" << endl;
+}
+
+int Sudoku::chk_win()
+{
+	int err_chk = 0;
+
+	if (filled != 81)
+	{
+		return 0;
+	}
+	
+	#ifdef __linux__
+        err_chk = system("clear");
+    #elif defined(_WIN32)
+        err_chk = system("cls");
+    #endif
+
+	if (err_chk != 0)
+	{
+		cerr << "Error! Unable to clear the screen." << endl;
+	}
+
+	cout << "\n\n\n\n\t\t\t\tYOU HAVE WON THE GAME! CONGRATULATIONS!" << endl;
+	return 1;
 }

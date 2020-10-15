@@ -22,9 +22,16 @@ int main(int argc, char const *argv[])
         return -2;
     }
 
+    int err_chk = 0;
+
+    #ifdef __linux__
+        err_chk = system("clear");
+    #elif defined(_WIN32)
+        err_chk = system("cls");
+    #endif
+
     Sudoku s;
     s.random();
-    int err_chk = 0;
     int ext_cd = 0;
  
     /* calling the functions sudoku,input and print */

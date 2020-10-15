@@ -26,12 +26,9 @@ int main()
     filename<<name<<endl;
     filename>>name;
 
-    cout<<"Welcome "<<name<<endl;
-
+    
     cout<<message<<endl;
-    
-    
-
+    cout<<"Your Name "<<name<<endl;
 
     filename.close();
 

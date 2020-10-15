@@ -11,7 +11,7 @@ int main()
     string name;
 
 
-    filename.open("Sudoku_file.txt",ios::out | ios::in);
+    filename.open("Sudoku_file.txt", ios::out | ios::in );
 
     if(!filename)
     {

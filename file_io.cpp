@@ -57,7 +57,7 @@ int main()
     {
         message1="Bad";
         filename<<message1;
-        filename>>message;
+        filename>>message1;
     }
     
 

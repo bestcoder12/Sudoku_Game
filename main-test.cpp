@@ -1,14 +1,26 @@
-# include <iostream>
+#include <iostream>
 #include <cstdlib>
 #include <ctime>
+#include <chrono>
 #include <string>
 
-#ifndef SUDOKU_CLASS_H 
-#include "sudoku_class.h"
+#ifdef __linux__
+    #include <unistd.h>
+#elif defined (_WIN32)
+    #include <windows.h>
 #endif
 
+#ifndef SUDOKU_CLASS_H 
+    #include "sudoku_class.h"
+#endif
+
+#ifndef PLAYER_H
+    # include "player.h"
+#endif
 
 using namespace std;
+
+using namespace user_gm;
 
 using namespace s_brd;
 
@@ -23,9 +35,12 @@ int main(int argc, char const *argv[])
 
     Sudoku s;
     s.random();
+    time_t start = time (NULL);
     int err_chk = 0;
     int ext_cd = 0;
- 
+    double time_diff = 0.0;
+    Player p1;
+    
     /* calling the functions sudoku,input and print */
     for (;;)
     {
@@ -33,15 +48,25 @@ int main(int argc, char const *argv[])
         {
             cerr << "Unable to clear the screen.";
         }
-        
-        for (int i = 0; i < 500000000; i++) 
-        {}
-        
+    
+        #ifdef __linux__
+            sleep(2);
+        #elif defined (_WIN32)
+            sleep(2000);
+        #endif
+
         #ifdef __linux__
             err_chk = system("clear");
         #elif defined(_WIN32)
             err_chk = system("cls");
         #endif
+
+        time_diff = p1.timer(start);
+        if (time_diff > 900.0)
+        {
+            cout << "Game lost!" << endl;
+            break;
+        }
         
         s.print_board();
         ext_cd = s.input();

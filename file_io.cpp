@@ -6,12 +6,12 @@ using namespace std;
 using namespace user_gm;
 
 
-int main()
+void player_input()
 {
     fstream filename;
     string message="Welcome to the Sudoku Game";
     string name;
-    string highscore;
+    double highscore;
     string message1;
     int won=0;
     int lost=0;

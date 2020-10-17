@@ -13,9 +13,11 @@ int main()
     string name;
     string highscore;
     string message1;
+    int won=0;
+    int lost=0;
 
 
-    filename.open("Sudoku_file.txt",ios::out | ios::in);
+    filename.open("Sudoku_file.txt",ios::app | ios::in);
 
     if(!filename)
     {
@@ -26,24 +28,24 @@ int main()
     filename>>message;
     cout<<"Enter the Player Name "<<endl;
     getline(cin,name);
-    filename<<name<<endl;
-    filename>>name;
+    filename<<"Your Name: "<<name;
+    filename>>"Your Name: ">>name;
 
-    cout<<message<<endl;
-    cout<<"Your Name : "<<name<<endl;
 
     highscore=900-diff;
 
     if(highscore<0)
     {
-        filename<<"You already crossed the Time limit i.e., 900 seconds"<<endl;
-        filename>>"You already crossed the Time limit i.e., 900 seconds"<<endl;
+        filename<<"You already crossed the Time limit i.e., 900 seconds";
+        filename>>"You already crossed the Time limit i.e., 900 seconds";
+        ++lost;
     }
     else if(highscore>450 && highscore<800)
     {
         message1="GOOD";
         filename<<message1;
         filename>>message1;
+        ++won;
 
     }
     else if(highscore>800)
@@ -51,17 +53,19 @@ int main()
         message1="Outstanding";
         filename<<message1;
         filename>>message1;
+        ++won;
 
     }
     else if(highscore<200)
     {
         message1="Bad";
         filename<<message1;
-        filename>>message1;
+        filename>>message;
+        ++won;
     }
+    filename<<"No of games WON: "<<won<<"    No of games Lost: "<<lost<<"    HighScore:"<<highscore;
+    filename>>"No of games WON: ">>won>>"    No of games Lost: ">>lost>>"    HighScore:"<<highscore;
     
-
-
     filename.close();
 
     

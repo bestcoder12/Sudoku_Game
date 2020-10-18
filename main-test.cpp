@@ -33,13 +33,14 @@ int main(int argc, char const *argv[])
         cerr << "Usage: ./game\n Or game.exe";    
     }
 
+    Player p1;
     Sudoku s;
     s.random();
     time_t start = time (NULL);
     int err_chk = 0;
     int ext_cd = 0;
     double time_diff = 0.0;
-    Player p1;
+
     
     /* calling the functions sudoku,input and print */
     for (;;)

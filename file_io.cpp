@@ -2,17 +2,21 @@
 #include<fstream>
 #include<string>
 
+#include "player.h"
+
 using namespace std;
 using namespace user_gm;
 
 
-void player_input()
+
+void Player::player_input()
 {
     fstream filename;
     string message="Welcome to the Sudoku Game";
     string name;
     double highscore;
     string message1;
+    string message2="WON,LOST,HIGHSCORE";
     int won=0;
     int lost=0;
 
@@ -28,23 +32,22 @@ void player_input()
     filename>>message;
     cout<<"Enter the Player Name "<<endl;
     getline(cin,name);
-    filename<<"Your Name: "<<name;
-    filename>>"Your Name: ">>name;
+    filename<<name;
+    filename>>name;
 
 
     highscore=900-diff;
 
     if(highscore<0)
     {
-        filename<<"You already crossed the Time limit i.e., 900 seconds";
-        filename>>"You already crossed the Time limit i.e., 900 seconds";
+        message1="You already crossed the Time limit i.e., 900 seconds";
+        filename<<message1;
         ++lost;
     }
     else if(highscore>450 && highscore<800)
     {
         message1="GOOD";
         filename<<message1;
-        filename>>message1;
         ++won;
 
     }
@@ -52,7 +55,6 @@ void player_input()
     {
         message1="Outstanding";
         filename<<message1;
-        filename>>message1;
         ++won;
 
     }
@@ -60,16 +62,12 @@ void player_input()
     {
         message1="Bad";
         filename<<message1;
-        filename>>message;
         ++won;
     }
-    filename<<"No of games WON: "<<won<<"    No of games Lost: "<<lost<<"    HighScore:"<<highscore;
-    filename>>"No of games WON: ">>won>>"    No of games Lost: ">>lost>>"    HighScore:"<<highscore;
+    filename<<message2<<won<<lost<<highscore;
     
     filename.close();
 
     
-
-    return 0;
 
 }

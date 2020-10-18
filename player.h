@@ -1,5 +1,3 @@
-#include <ctime>
-
 #ifndef PLAYER_H
 #define PLAYER_H
 
@@ -15,8 +13,8 @@ namespace user_gm
         public:
             /* Does the player exist in datab.txt? */
             
-            time_t timer();
-    }
+            double timer(time_t start);
+    };
 }
 
 #endif /* PLAYER_H */

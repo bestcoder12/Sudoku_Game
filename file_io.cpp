@@ -9,7 +9,7 @@ using namespace user_gm;
 
 
 
-void Player::player_input()
+void Player::player_input(double diff)
 {
     fstream filename;
     string message="Welcome to the Sudoku Game";

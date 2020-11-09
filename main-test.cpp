@@ -45,7 +45,6 @@ int main(int argc, char const *argv[])
     Sudoku s;
     s.random();
     time_t start = time (NULL);
-    int err_chk = 0;
     int ext_cd = 0;
     double time_diff = 0.0;
     Player p1;

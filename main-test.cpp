@@ -30,8 +30,17 @@ int main(int argc, char const *argv[])
 {
     if (argc != 1)
     {
-        cerr << "Usage: ./game\n Or game.exe";    
+        cerr << "Usage: ./game\n Or game.exe\n"; 
+        return -2;
     }
+
+    int err_chk = 0;
+
+    #ifdef __linux__
+        err_chk = system("clear");
+    #elif defined(_WIN32)
+        err_chk = system("cls");
+    #endif
 
     Sudoku s;
     s.random();

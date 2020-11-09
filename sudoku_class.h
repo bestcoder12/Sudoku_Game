@@ -50,8 +50,6 @@ namespace s_brd
 				cell board[9][9]; 
 			/* contains the number of cells filled in sudoku */
 				int filled; 
-			/* contains the number of unfilled or empty cells in sudoku */
-				int unfilled; 
 		
 		public: 
 			

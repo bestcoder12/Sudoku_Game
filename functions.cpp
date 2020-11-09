@@ -48,7 +48,7 @@ Sudoku::Sudoku()
 	
     if(Difficulty.compare("Easy") == 0) 
 	{			
-		filled = 45; 
+		filled = 35; 
 	}
 	else if(Difficulty.compare("Medium") == 0)
 	{ 

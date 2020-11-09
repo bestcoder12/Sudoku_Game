@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
-#include <chrono>
 #include <string>
 
 #ifdef __linux__
@@ -33,13 +32,15 @@ int main(int argc, char const *argv[])
         cerr << "Usage: ./game\n Or game.exe";    
     }
 
+    Player p1;
+    p1.player_input(500.0);
     Sudoku s;
     s.random();
     time_t start = time (NULL);
     int err_chk = 0;
     int ext_cd = 0;
     double time_diff = 0.0;
-    Player p1;
+
     
     /* calling the functions sudoku,input and print */
     for (;;)
@@ -52,7 +53,7 @@ int main(int argc, char const *argv[])
         #ifdef __linux__
             sleep(2);
         #elif defined (_WIN32)
-            sleep(2000);
+            Sleep(2000);
         #endif
 
         #ifdef __linux__

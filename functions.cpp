@@ -152,7 +152,7 @@ void Sudoku::random()
 int Sudoku::input() 
 {
 	int row = 0,col = 0, inp_num = 0, err_cd = 0, cnt = 0;
-	 string loc, num;
+	string loc, num;
 
 	/* Asking the location of the box in which to enter the number */
 	cout << "Enter the location where you want to insert the element in the format (x,y): "; 
@@ -259,9 +259,8 @@ void Sudoku::print_board()
 			}
 			cout << "| " << board[i][j].get_Int() << " "; 
 		}
-		cout << "|" << endl;
+		cout << "-------------------------------------" << endl;
 	}
-	cout << "-------------------------------------" << endl;
 }
 
 int Sudoku::chk_win()

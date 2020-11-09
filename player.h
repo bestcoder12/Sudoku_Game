@@ -13,6 +13,8 @@ namespace user_gm
         public:
             /* Does the player exist in datab.txt? */
             
+            void player_input(double diff);
+
             double timer(time_t start);
     };
 }

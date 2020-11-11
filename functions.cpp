@@ -86,7 +86,8 @@ Sudoku::Sudoku()
 	/*
 	 * Initializing the board with valid values
 	 * that is initializing every element or cells of the board
-	 * so as to have a solved board at the beginning.
+	 * so as to have a solved board at the beginning from which 
+	 * cells of required amount are unfilled.
 	 */
 
 	int rand_num = 0;

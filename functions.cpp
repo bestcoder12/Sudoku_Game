@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string> 
 #include <ctime>
+#include <random>
 
 /* Header file for definition of the class Sudoku */
 #include "sudoku_class.h"
@@ -26,6 +27,22 @@ bool cell::get_Editable()
 	return editable;
 }
 
+void shift_t (cell t_board[9][9], int t_row)
+{
+	for (int t_col = 0; t_col < 9; t_col++)
+	{
+		t_board[t_row][(t_col+6)%9] = t_board[t_row-1][t_col];
+	}
+}
+
+void shift_o (cell t_board[9][9], int t_row)
+{
+	for (int t_col = 0; t_col < 9; t_col++)
+	{
+		t_board[t_row][(t_col+8)%9] = t_board[t_row-1][t_col];
+	}
+}
+
 /* A Default constructor */
 Sudoku::Sudoku() 
 {
@@ -48,12 +65,12 @@ Sudoku::Sudoku()
 	
     if(Difficulty.compare("Easy") == 0) 
 	{			
-		filled = 35; 
+		filled = 30; 
 	}
 	else if(Difficulty.compare("Medium") == 0)
 	{ 
 		
-		filled = 30; 
+		filled = 25; 
 	}
 	else if(Difficulty.compare("Hard") == 0)
 	{
@@ -63,19 +80,39 @@ Sudoku::Sudoku()
 	else
 	{
 		cout << "Invalid option selected, defaulting to Easy..." << endl;
-		filled = 60;
+		filled = 30;
 	}
 
 	/*
-	 * Initializing the board with invalid values
-	 * that is initializing every element or cells of the board as -1
+	 * Initializing the board with valid values
+	 * that is initializing every element or cells of the board
+	 * so as to have a solved board at the beginning.
 	 */
 
-	for (int i = 0; i < 9; i++)
+	int rand_num = 0;
+	default_random_engine defEngine(time(0));
+	uniform_int_distribution<int> intDistro(1,9);
+	int i = 0;
+	while (i < 9)
 	{
-		for (int j = 0; j < 9; j++)
+		rand_num = intDistro(defEngine);
+		if (chk_num(rand_num,0,i) == -1)
 		{
-			board[i][j].set_Val(-1,true); 
+			continue;
+		}
+		board[0][i].set_Val(rand_num,false);
+		i++;
+	}
+	
+	for (int j = 1; j < 9; j++)
+	{
+		if (j%3 == 0)
+		{
+			shift_o(board,j);
+		}
+		else
+		{
+			shift_t(board,j);
 		}
 	}
 }		

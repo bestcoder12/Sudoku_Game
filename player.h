@@ -9,11 +9,12 @@ namespace user_gm
             int high_score;
             int gm_won;
             int gm_lost;
+
         
         public:
             /* Does the player exist in datab.txt? */
             
-            double timer(time_t start);
+            double timer(std::chrono::steady_clock::time_point start);
     };
 }
 

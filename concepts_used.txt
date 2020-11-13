@@ -6,5 +6,4 @@
 6. Association
 7. Composition
 8. Iterator
-9. (Templates)
-10. (Recursive association) 
+9. Template classes

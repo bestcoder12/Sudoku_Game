@@ -61,8 +61,11 @@ namespace s_brd
 			/* Function for checking whether the entered number is repeated or not*/
 			int chk_num(int temp_num,int t_row, int t_col);
 
+			bool solveSudoku(cell t_board[9][9]);
+
 			/* Function for initializing the board with random numbers */
-			void random();
+			/*void random();*/
+			void cell_remover();
 
 			/* Function for getting input for each cell of the sudoku */
 			int input();
@@ -71,7 +74,8 @@ namespace s_brd
 			void print_board();
 
 			/* Function for checking the game for completion */
-			int	chk_win();		
+			int	chk_win();
+		
 	};
 }
 

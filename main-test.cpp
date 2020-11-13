@@ -44,7 +44,7 @@ int main(int argc, char const *argv[])
 
     Sudoku s;
     s.random();
-    time_t start = time (NULL);
+    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     int ext_cd = 0;
     double time_diff = 0.0;
     Player p1;

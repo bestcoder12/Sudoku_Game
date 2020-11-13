@@ -10,7 +10,7 @@ for the game is already set for him.**_ (Source: https://en.wikipedia.org/wiki/S
 
 The layout of the board is similar to the one given below.
 
-![Sudoku Board](https://github.com/bestcoder12/Sudoku_Game/blob/master/Sudoku_Puzzle.jpg)
+![Sudoku Board](https://github.com/bestcoder12/Sudoku_Game/blob/master/data/Sudoku_Puzzle.jpg)
 
 Source: By Tim Stellmach, CC0, https://commons.wikimedia.org/w/index.php?curid=57831926
 

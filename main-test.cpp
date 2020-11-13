@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
     #endif
 
     Sudoku s;
-    s.random();
+    s.cell_remover();
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     int ext_cd = 0;
     double time_diff = 0.0;

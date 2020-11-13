@@ -2,12 +2,18 @@
 #include <string> 
 #include <ctime>
 #include <random>
+#include <chrono>
+#include <ratio>
 
 /* Header file for definition of the class Sudoku */
 #include "sudoku_class.h"
 
+/* Header file for definition of a player */
+#include "player.h"
+
 using namespace std; 
 using namespace s_brd;
+using namespace user_gm;
 
 /* Functions of class cell set_Val, get_Int and get_Editable */
 
@@ -91,12 +97,12 @@ Sudoku::Sudoku()
 	 */
 
 	int rand_num = 0;
-	default_random_engine defEngine(time(0));
-	uniform_int_distribution<int> intDistro(1,9);
+	default_random_engine defEngine1(time(0));
+	uniform_int_distribution<int> intDistro1(1,9);
 	int i = 0;
 	while (i < 9)
 	{
-		rand_num = intDistro(defEngine);
+		rand_num = intDistro1(defEngine1);
 		if (chk_num(rand_num,0,i) == -1)
 		{
 			continue;
@@ -160,30 +166,19 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	return 0;
 }
 
-/* Function for initializing the board with random numbers */
-void Sudoku::random() 
+/* 
+ * The function to time the puzzle and 
+ * check whether the 15 minute limit is crossed or not.
+ */
+double Player::timer(std::chrono::steady_clock::time_point start)
 {
-	srand((unsigned)time(NULL));
-  
-	int random_no,f,z,s=0;
-	int error = 0;
-   
-	while(s<filled)
-	{
-		random_no=(rand()%9)+1;
-		f=rand()%9;
-		z=rand()%9; 
-		error = chk_num(random_no,f,z);
-	  
-	  	if(board[f][z].get_Editable() == true) 
-	   	{
-			if(error == 0)
-			{
-				board[f][z].set_Val(random_no,false);
-				s++;
-	     	}
-		}
-	}       
+    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    std::chrono::duration<double,std::milli> t_diff = end-start;
+    double differ = t_diff.count() / 1000;
+    int minute = 15 - (differ / 60);
+    int seconds = 60 - ((int)differ % 60);   
+    cout << "\t\t\t\t\t\t\t" << "Time left  " << minute << ":" << seconds << "\n";
+    return differ;
 }
 
 /* Input function for getting the row ,column and the element*/
@@ -199,6 +194,17 @@ int Sudoku::input()
 	if ( loc == " #!Q" || loc == "#!Q" )
 	{
 		return -1;
+	}
+
+	if (loc == "solve" || loc == "Solve")
+	{
+		if (solveSudoku(this->board))
+		{
+			print_board();
+			exit(0);
+		}
+		cout << "Unable to solve the board! Exiting..." << endl;
+		exit(-1);
 	} 
 
 	/* Declaring a string iterator to traverse the string character by character */
@@ -258,6 +264,17 @@ int Sudoku::input()
 		return -1;
 	} 
 	
+	if (num == "solve" || num == "Solve")
+	{
+		if (solveSudoku(this->board))
+		{
+			print_board();
+			exit(0);
+		}
+		cout << "Unable to solve the board! Exiting..." << endl;
+		exit(-1);
+	} 
+
 	inp_num = stod(num);
 
 	/* Checking the entered number for repetition in row, column or box. */

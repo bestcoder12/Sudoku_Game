@@ -12,8 +12,7 @@ namespace user_gm
 
         
         public:
-            /* Does the player exist in datab.txt? */
-            
+            /* Function to display the time left in the puzzle */
             double timer(std::chrono::steady_clock::time_point start);
     };
 }

@@ -8,7 +8,10 @@ using namespace std;
 
 using namespace user_gm;
 
-/* Now what???? */
+/* 
+ * The function to time the puzzle and 
+ * check whether the 15 minute limit is crossed or not.
+ */
 
 double Player::timer(std::chrono::steady_clock::time_point start)
 {

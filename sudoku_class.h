@@ -60,7 +60,14 @@ namespace s_brd
 			int chk_num(int temp_num,int t_row, int t_col);
 
 			/* Function for initializing the board with random numbers */
-			void random();
+			/* void random(); */
+			/* The above method gives unsolvable boards sometimes*/
+
+			/* Correct way to produce solvable boards */
+			void cell_remover();
+
+			/* Function to solve the given board if needed. */
+			bool solveSudoku(cell t_board[9][9]);
 
 			/* Function for getting input for each cell of the sudoku */
 			int input();

@@ -27,7 +27,7 @@ bool cell::get_Editable()
 	return editable;
 }
 
-void shift_t (cell t_board[9][9], int t_row)
+void shift_three (cell t_board[9][9], int t_row)
 {
 	for (int t_col = 0; t_col < 9; t_col++)
 	{
@@ -35,7 +35,7 @@ void shift_t (cell t_board[9][9], int t_row)
 	}
 }
 
-void shift_o (cell t_board[9][9], int t_row)
+void shift_one (cell t_board[9][9], int t_row)
 {
 	for (int t_col = 0; t_col < 9; t_col++)
 	{
@@ -109,11 +109,11 @@ Sudoku::Sudoku()
 	{
 		if (j%3 == 0)
 		{
-			shift_o(board,j);
+			shift_one(board,j);
 		}
 		else
 		{
-			shift_t(board,j);
+			shift_three(board,j);
 		}
 	}
 }		

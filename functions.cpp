@@ -71,7 +71,7 @@ Sudoku::Sudoku()
 	
     if(Difficulty.compare("Easy") == 0) 
 	{			
-		filled = 80; 
+		filled = 30; 
 	}
 	else if(Difficulty.compare("Medium") == 0)
 	{ 
@@ -305,6 +305,12 @@ int Sudoku::input()
 		cout << "Unable to solve the board! Exiting..." << endl;
 		exit(-1);
 	} 
+
+	if (num == " \n" || num == "\n")
+	{
+		cout << "Could not recognize the number. Please enter again." << "\n";
+		return -2;
+	}
 
 	inp_num = stod(num);
 

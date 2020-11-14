@@ -166,6 +166,37 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 	return 0;
 }
 
+/* Function for initializing the board with random numbers */
+/* 
+ * This function works as expected though due to some reason
+ * unsolvable boards were being made. Set aside for sometime.
+ * */
+/* void Sudoku::random() 
+{
+	srand((unsigned)time(NULL));
+  
+	int random_no,f,z,s=0;
+	int error = 0;
+   
+	while(s<filled)
+	{
+		random_no=(rand()%9)+1;
+		f=rand()%9;
+		z=rand()%9; 
+		error = chk_num(random_no,f,z);
+	  
+	  	if(board[f][z].get_Editable() == true) 
+	   	{
+			if(error == 0)
+			{
+				board[f][z].set_Val(random_no,false);
+				s++;
+	     	}
+		}
+	}       
+}
+*/
+
 /* 
  * The function to time the puzzle and 
  * check whether the 15 minute limit is crossed or not.

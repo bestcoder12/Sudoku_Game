@@ -1,5 +1,7 @@
+#include <iostream>
 #include <random>
 #include <ctime>
+
 #include "sudoku_class.h"
 
 using namespace s_brd;
@@ -80,7 +82,7 @@ bool Sudoku::solveSudoku(cell t_board[9][9])
 		if (repInGrid(t_board,row, col, num))
 		{
         
-			t_board[row][col].set_Val(num,true);
+			t_board[row][col].set_Val(num,false);
          
 			if (solveSudoku(t_board))
         	{
@@ -106,6 +108,11 @@ void Sudoku::cell_remover()
 	{
 		c = intDistro(defEngine);
 		r = intDistro(defEngine);
+
+		if (board[r][c].get_Int() == -1)
+		{
+			continue;
+		}
 	  
 		rep_num = board[r][c].get_Int();
 		board[r][c].set_Val(-1,true);

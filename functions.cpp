@@ -71,7 +71,7 @@ Sudoku::Sudoku()
 	
     if(Difficulty.compare("Easy") == 0) 
 	{			
-		filled = 30; 
+		filled = 80; 
 	}
 	else if(Difficulty.compare("Medium") == 0)
 	{ 

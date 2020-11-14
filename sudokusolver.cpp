@@ -98,7 +98,7 @@ bool Sudoku::solveSudoku(cell t_board[9][9])
 /* Remove filled numbers from a solved board one at a time to generate the puzzle */
 void Sudoku::cell_remover()
 {
-	std::default_random_engine defEngine(time(0));
+	/*std::default_random_engine defEngine(time(0));
 	std::uniform_int_distribution<int> intDistro(0,8);
 	   
 	cell t_board[9][9];
@@ -125,12 +125,25 @@ void Sudoku::cell_remover()
 			}
 		}
 
-		if (solveSudoku(t_board))
+		if (!solveSudoku(t_board))
 		{
-			i++;
+			board[r][c].set_Val(rep_num,false);
 			continue;
 		}
-	      
-		board[r][c].set_Val(rep_num,false);
+
+		i++;
+	}*/
+
+	std::default_random_engine defEngine(time(0));
+	std::uniform_int_distribution<int> intDistro(0,8);
+
+	int row, col;
+
+	for (int i = 0; i < 81 - filled; i++)
+	{
+		row = intDistro(defEngine);
+		col = intDistro(defEngine);
+
+		board[row][col].set_Val(-1,true);
 	}
 }

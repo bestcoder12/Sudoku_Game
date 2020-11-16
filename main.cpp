@@ -63,7 +63,7 @@ int main(int argc, char const *argv[])
         #ifdef __linux__
             sleep(2);
         #elif defined (_WIN32)
-            sleep(2000);
+            Sleep(2000);
         #endif
 
         #ifdef __linux__

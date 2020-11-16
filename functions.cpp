@@ -34,11 +34,13 @@ bool cell::get_Editable()
 	return editable;
 }
 
+/* Function for mixing the numbers in rand_nums[] used by random_shuffle() */
 int mix_numbers (int Maxsize)
 {
 	return rand() % Maxsize;
 }
 
+/* Function to shift the previous row by 3 (THREE) and put it in the next row */
 void shift_three (cell t_board[9][9], int t_row)
 {
 	for (int t_col = 0; t_col < 9; t_col++)
@@ -47,6 +49,7 @@ void shift_three (cell t_board[9][9], int t_row)
 	}
 }
 
+/* Function to shift the previous row by 1 (ONE) and put it in the next row */
 void shift_one (cell t_board[9][9], int t_row)
 {
 	for (int t_col = 0; t_col < 9; t_col++)
@@ -103,12 +106,14 @@ Sudoku::Sudoku()
 	 */
 
 	srand(time(0));
+	
+	/* Random numbers to be put in 1st row */
 	int rand_nums[9];
+	
 	for (int o = 0; o < 9; o++)
 	{
 		rand_nums[o] = o+1; 
 	}
-
 	random_shuffle(rand_nums,rand_nums+9,mix_numbers);
 
 	for (int i = 0; i < 9; i++)
@@ -214,18 +219,17 @@ int Sudoku::chk_num(int temp_num, int t_row, int t_col)
 */
 
 /* 
- * The function to time the puzzle and 
- * check whether the 15 minute limit is crossed or not.
+ * The function to time the puzzle, of which max time is 15 minutes,
+ * and used by other functions to check whether the 15 minute limit is crossed or not.
  */
-double Player::timer(std::chrono::steady_clock::time_point start)
+void Player::timer(std::chrono::steady_clock::time_point start)
 {
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
     std::chrono::duration<double,std::milli> t_diff = end-start;
-    double differ = t_diff.count() / 1000;
-    int minute = 15 - (differ / 60);
-    int seconds = 60 - ((int)differ % 60);   
+    time_diff = t_diff.count() / 1000;
+    int minute = 15 - (time_diff / 60);
+    int seconds = 60 - ((int)time_diff % 60);   
     cout << "\t\t\t\t\t\t\t" << "Time left  " << minute << ":" << seconds << "\n";
-    return differ;
 }
 
 /* Input function for getting the row ,column and the element*/

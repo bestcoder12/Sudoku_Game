@@ -3,8 +3,9 @@
 3. Attributes
 4. Methods
 5. Encapsulation/Data Hiding
-6. Association
-7. Composition
-8. Iterator
-9. Template classes
-10. Template function
+6. Abstraction
+7. Association
+8. Composition
+9. Iterator
+10. Template classes
+11. Template function

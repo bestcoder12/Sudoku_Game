@@ -42,11 +42,13 @@ int main(int argc, char const *argv[])
         err_chk = system("cls");
     #endif
 
-    Sudoku s;
-    s.cell_remover();
+    /* Board is contained within the Sudoku class */
+    Sudoku game_Board;
+    game_Board.cell_remover();
     
     int ext_cd = 0;
-    double time_diff = 0.0;
+
+    /* Player class used to conceptualize the idea of time taken by the user */
     Player p1;
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     
@@ -70,22 +72,23 @@ int main(int argc, char const *argv[])
             err_chk = system("cls");
         #endif
 
-        time_diff = p1.timer(start);
-        if (time_diff > 900.0)
+        p1.timer(start);
+        
+        if (p1.show_Time() > 900.0)
         {
             cout << "Game lost!" << endl;
-            break;
+            exit(-1);
         }
-        
-        s.print_board();
-        ext_cd = s.input();
+
+        game_Board.print_board();
+        ext_cd = game_Board.input();
         
         if (ext_cd == -1)
         {
             return -1;
         }
 
-        ext_cd = s.chk_win();
+        ext_cd = game_Board.chk_win();
 
         if (ext_cd == 1)
         {

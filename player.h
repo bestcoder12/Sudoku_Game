@@ -6,14 +6,17 @@ namespace user_gm
     class Player
     {
         private:
-            int high_score;
-            int gm_won;
-            int gm_lost;
-
+            double time_diff;
         
         public:
             /* Function to display the time left in the puzzle */
-            double timer(std::chrono::steady_clock::time_point start);
+            void timer(std::chrono::steady_clock::time_point start);
+
+            /* Function to tell the time difference */
+            double show_Time ()
+            {
+                return time_diff;
+            }
     };
 }
 

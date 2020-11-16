@@ -97,7 +97,7 @@ int genRandNum (int Max)
 {
 	return rand()%Max;
 }
-
+/* Grid is used for the random numbers in cell_remover() */
 void Sudoku::init_gridPos()
 {
 	srand(time(0));
@@ -108,6 +108,7 @@ void Sudoku::init_gridPos()
 	std::random_shuffle (this->gridPos, (this->gridPos)+81, genRandNum);
 }
 
+/* The function to find valid candidates for each cell */
 void Sudoku::count_Sols (int &num)
 {
 	int row, col;

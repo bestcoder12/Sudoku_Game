@@ -245,7 +245,9 @@ int Sudoku::input()
 
 	if (loc == "solve" || loc == "Solve")
 	{
-		print_board(1);
+		solveSudoku(board);
+		filled = 81;
+		print_board(0);
 		exit(0);
 	} 
 
@@ -308,7 +310,9 @@ int Sudoku::input()
 	
 	if ( num == "solve" || num == "Solve" )
 	{
-		print_board(1);
+		solveSudoku(board);
+		filled = 81;
+		print_board(0);
 		exit(0);
 	}
 

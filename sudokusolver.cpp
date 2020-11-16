@@ -139,7 +139,7 @@ void Sudoku::count_Sols (int &num)
 void Sudoku::cell_remover()
 {	
 	this->init_gridPos();
-	for (int i = 0; i < filled; i++)
+	for (int i = 0; i < 81 - filled; i++)
 	{
 		int x = gridPos[i]/9;
 		int y = gridPos[i]%9;

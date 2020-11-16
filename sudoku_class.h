@@ -79,7 +79,7 @@ namespace s_brd
 			int input();
 
 			/* Function for printing the sudoku board */
-			void print_board(int opt);
+			void print_board();
 
 			/* Function for checking the game for completion */
 			int	chk_win();		

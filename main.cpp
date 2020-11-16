@@ -44,10 +44,11 @@ int main(int argc, char const *argv[])
 
     Sudoku s;
     s.cell_remover();
-    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    
     int ext_cd = 0;
     double time_diff = 0.0;
     Player p1;
+    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
     
     /* calling the functions sudoku,input and print */
     for (;;)
@@ -76,7 +77,7 @@ int main(int argc, char const *argv[])
             break;
         }
         
-        s.print_board(0);
+        s.print_board();
         ext_cd = s.input();
         
         if (ext_cd == -1)

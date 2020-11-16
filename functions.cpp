@@ -247,7 +247,7 @@ int Sudoku::input()
 	{
 		solveSudoku(board);
 		filled = 81;
-		print_board(0);
+		print_board();
 		exit(0);
 	} 
 
@@ -312,7 +312,7 @@ int Sudoku::input()
 	{
 		solveSudoku(board);
 		filled = 81;
-		print_board(0);
+		print_board();
 		exit(0);
 	}
 
@@ -351,48 +351,25 @@ int Sudoku::input()
  * otherwise the number is printed 
  */
 
-void Sudoku::print_board(int opt)
+void Sudoku::print_board()
 {
-	if (opt == 0)
+	for (int i = 0; i < 9; i++)
 	{
-		for (int i = 0; i < 9; i++)
-		{
-			cout << "-------------------------------------" << endl;
-			for (int j = 0; j < 9; j++)
-			{
-				if (board[i][j].get_Int() == -1)
-				{
-					cout << "|" << "   "; 
-					
-					/*skips or jumps out of the condition if the row or column lies outside the range*/
-					continue;
-				}
-				cout << "| " << board[i][j].get_Int() << " "; 
-			}
-			cout << "|" << endl;
-		}
 		cout << "-------------------------------------" << endl;
-	}
-	else
-	{
-		for (int i = 0; i < 9; i++)
+		for (int j = 0; j < 9; j++)
 		{
-			cout << "-------------------------------------" << endl;
-			for (int j = 0; j < 9; j++)
+			if (board[i][j].get_Int() == -1)
 			{
-				if (sol_board[i][j].get_Int() == -1)
-				{
-					cout << "|" << "   "; 
-					
-					/*skips or jumps out of the condition if the row or column lies outside the range*/
-					continue;
-				}
-				cout << "| " << sol_board[i][j].get_Int() << " "; 
+				cout << "|" << "   "; 
+				
+				/*skips or jumps out of the condition if the row or column lies outside the range*/
+				continue;
 			}
-			cout << "|" << endl;
+			cout << "| " << board[i][j].get_Int() << " "; 
 		}
-		cout << "-------------------------------------" << endl;
+		cout << "|" << endl;
 	}
+	cout << "-------------------------------------" << endl;
 }
 
 int Sudoku::chk_win()

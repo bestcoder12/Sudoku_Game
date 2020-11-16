@@ -69,11 +69,11 @@ Sudoku::Sudoku()
 	
     string Difficulty; 
       
-    cout << "Choose the difficulty from one of the below options: "<<endl;
+    cout << "Choose the difficulty from one of the below options: " << "\n";
 	cout << "\n\tEasy\n";
 	cout << "\tMedium\n";
-	cout << "\tHard" <<endl;
-	cout << "\n" << endl;
+	cout << "\tHard" << "\n";
+	cout << "\n" << "\n";
 	cout << "Your choice: ";		
 	getline(cin,Difficulty); 
 		
@@ -94,7 +94,7 @@ Sudoku::Sudoku()
 	}
 	else
 	{
-		cout << "Invalid option selected, defaulting to Easy..." << endl;
+		cout << "Invalid option selected, defaulting to Easy..." << "\n";
 		filled = 30;
 	}
 
@@ -294,13 +294,13 @@ int Sudoku::input()
 
 	if (row > 8 || row < 0 || col < 0 || col > 8) 			                                                                                         
 	{
-		cout << "Error! Wrong position entered. Please enter the position again.\n" << endl;
+		cout << "Error! Wrong position entered. Please enter the position again.\n" << "\n";
 		return -2;
 	}
 
 	if (board[row][col].get_Editable() == false)
 	{
-		cout << "Error! This is already filled cell. Please enter the position again.\n" << endl;
+		cout << "Error! This is already filled cell. Please enter the position again.\n" << "\n";
 		return -2;
 	}
 
@@ -322,6 +322,10 @@ int Sudoku::input()
 
 	if ( num == "del" || num == "Del")
 	{
+		if (!board[row][col].get_Editable())
+		{
+			cout << "The cell cannot be deleted! Please select correct cell." << "\n";
+		}
 		board[row][col].set_Val(-1,true);
 		return 4;
 	} 
@@ -338,14 +342,15 @@ int Sudoku::input()
 	err_cd = chk_num(inp_num,row,col);
 	if (err_cd == -1)
 	{
-		cout << "The number you entered at " << "(" << row << "," << col << ")" << " repeats in a row, column or box." << endl;
+		cout << "The number you entered at " << "(" << row+1 << "," << col+1 << ")" << " repeats in a row, column or box." << "\n";
 		return -2;
 	}
 
 	/* Inputing the element in the 9 x 9 sudoku board */
 	
 	board[row][col].set_Val(inp_num,true);
-	cout << "Number entered successfully!" << endl; 
+	filled += 1;
+	cout << "Number entered successfully!" << "\n"; 
 
 	return 0;
 }
@@ -359,7 +364,7 @@ void Sudoku::print_board()
 {
 	for (int i = 0; i < 9; i++)
 	{
-		cout << "-------------------------------------" << endl;
+		cout << "-------------------------------------" << "\n";
 		for (int j = 0; j < 9; j++)
 		{
 			if (board[i][j].get_Int() == -1)
@@ -371,18 +376,24 @@ void Sudoku::print_board()
 			}
 			cout << "| " << board[i][j].get_Int() << " "; 
 		}
-		cout << "|" << endl;
+		cout << "|" << "\n";
 	}
-	cout << "-------------------------------------" << endl;
+	cout << "-------------------------------------" << "\n";
 }
 
 int Sudoku::chk_win()
 {
 	int err_chk = 0;
 
-	if (filled != 81)
+	for (int i = 0; i < 9; i++)
 	{
-		return 0;
+		for (int j = 0; j < 9; j++)
+		{
+			if (board[i][j].get_Int() == -1)
+			{
+				return 0;
+			}
+		}
 	}
 	
 	#ifdef __linux__

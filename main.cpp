@@ -41,6 +41,25 @@ int main(int argc, char const *argv[])
     #elif defined(_WIN32)
         err_chk = system("cls");
     #endif
+    
+    cout << "\n\n\n\n\n\n\t\t\t\t\tWelcome to the SUDOKU GAME!!" << "\n\n\n\n";
+
+    cout << "\n\n\n\n\nAfter the game starts -> \nEnter:\n";
+	cout << "\t#!Q (to quit the game)\n";
+	cout << "\tdel (to delete the entry in a cell)\n";
+	cout << "\tsolve (to solve the puzzle automatically)\n\n";
+
+    #ifdef __linux__
+        sleep(4);
+    #elif defined (_WIN32)
+        Sleep(4000);
+    #endif
+
+    #ifdef __linux__
+        err_chk = system("clear");
+    #elif defined(_WIN32)
+        err_chk = system("cls");
+    #endif
 
     /* Board is contained within the Sudoku class */
     Sudoku game_Board;

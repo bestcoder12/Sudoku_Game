@@ -69,7 +69,7 @@ Sudoku::Sudoku()
 	
     string Difficulty; 
       
-    cout << "Choose the difficulty from one of the below options: " << "\n";
+	cout << "Choose the difficulty from one of the below options: " << "\n";
 	cout << "\n\tEasy\n";
 	cout << "\tMedium\n";
 	cout << "\tHard" << "\n";
@@ -410,3 +410,4 @@ int Sudoku::chk_win()
 	cout << "\n\n\n\n\t\t\t\tYOU HAVE WON THE GAME! CONGRATULATIONS!" << endl;
 	return 1;
 }
+

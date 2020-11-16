@@ -4,6 +4,7 @@
 #include <random>
 #include <chrono>
 #include <ratio>
+#include <algorithm>
 
 /* Header file for definition of the class Sudoku */
 #include "sudoku_class.h"
@@ -31,6 +32,11 @@ int cell::get_Int()
 bool cell::get_Editable()
 {
 	return editable;
+}
+
+int mix_numbers (int Maxsize)
+{
+	return rand() % Maxsize;
 }
 
 void shift_three (cell t_board[9][9], int t_row)
@@ -96,19 +102,19 @@ Sudoku::Sudoku()
 	 * cells of required amount are unfilled.
 	 */
 
-	int rand_num = 0;
-	default_random_engine defEngine1(time(0));
-	uniform_int_distribution<int> intDistro1(1,9);
-	int i = 0;
-	while (i < 9)
+	srand(time(0));
+	int rand_nums[9];
+	for (int o = 0; o < 9; o++)
 	{
-		rand_num = intDistro1(defEngine1);
-		if (chk_num(rand_num,0,i) == -1)
-		{
-			continue;
-		}
-		board[0][i].set_Val(rand_num,false);
-		i++;
+		rand_nums[o] = o+1; 
+	}
+
+	random_shuffle(rand_nums,rand_nums+9,mix_numbers);
+
+	for (int i = 0; i < 9; i++)
+	{
+		
+		board[0][i].set_Val(rand_nums[i],false);
 	}
 	
 	for (int j = 1; j < 9; j++)
@@ -122,6 +128,16 @@ Sudoku::Sudoku()
 			shift_three(board,j);
 		}
 	}
+
+	/* Copying solution board to sol_board */
+	for (int k = 0; k < 9; k++)
+	{
+		for (int l = 0; l < 9; l++)
+		{
+			sol_board[k][l] = board[k][l];
+		}
+	}
+
 }		
 
 int Sudoku::chk_num(int temp_num, int t_row, int t_col)
@@ -229,13 +245,8 @@ int Sudoku::input()
 
 	if (loc == "solve" || loc == "Solve")
 	{
-		if (solveSudoku(this->board))
-		{
-			print_board();
-			exit(0);
-		}
-		cout << "Unable to solve the board! Exiting..." << endl;
-		exit(-1);
+		print_board(1);
+		exit(0);
 	} 
 
 	/* Declaring a string iterator to traverse the string character by character */
@@ -295,15 +306,16 @@ int Sudoku::input()
 		return -1;
 	} 
 	
-	if (num == "solve" || num == "Solve")
+	if ( num == "solve" || num == "Solve" )
 	{
-		if (solveSudoku(this->board))
-		{
-			print_board();
-			exit(0);
-		}
-		cout << "Unable to solve the board! Exiting..." << endl;
-		exit(-1);
+		print_board(1);
+		exit(0);
+	}
+
+	if ( num == "del" || num == "Del")
+	{
+		board[row][col].set_Val(-1,true);
+		return 4;
 	} 
 
 	if (num == " \n" || num == "\n")
@@ -335,25 +347,48 @@ int Sudoku::input()
  * otherwise the number is printed 
  */
 
-void Sudoku::print_board()
+void Sudoku::print_board(int opt)
 {
-	for (int i = 0; i < 9; i++)
+	if (opt == 0)
 	{
-		cout << "-------------------------------------" << endl;
-		for (int j = 0; j < 9; j++)
+		for (int i = 0; i < 9; i++)
 		{
-			if (board[i][j].get_Int() == -1)
+			cout << "-------------------------------------" << endl;
+			for (int j = 0; j < 9; j++)
 			{
-				cout << "|" << "   "; 
-				
-				/*skips or jumps out of the condition if the row or column lies outside the range*/
-				continue;
+				if (board[i][j].get_Int() == -1)
+				{
+					cout << "|" << "   "; 
+					
+					/*skips or jumps out of the condition if the row or column lies outside the range*/
+					continue;
+				}
+				cout << "| " << board[i][j].get_Int() << " "; 
 			}
-			cout << "| " << board[i][j].get_Int() << " "; 
+			cout << "|" << endl;
 		}
-		cout << "|" << endl;
+		cout << "-------------------------------------" << endl;
 	}
-	cout << "-------------------------------------" << endl;
+	else
+	{
+		for (int i = 0; i < 9; i++)
+		{
+			cout << "-------------------------------------" << endl;
+			for (int j = 0; j < 9; j++)
+			{
+				if (sol_board[i][j].get_Int() == -1)
+				{
+					cout << "|" << "   "; 
+					
+					/*skips or jumps out of the condition if the row or column lies outside the range*/
+					continue;
+				}
+				cout << "| " << sol_board[i][j].get_Int() << " "; 
+			}
+			cout << "|" << endl;
+		}
+		cout << "-------------------------------------" << endl;
+	}
 }
 
 int Sudoku::chk_win()

@@ -50,6 +50,10 @@ namespace s_brd
 				cell board[9][9]; 
 			/* contains the number of cells filled in sudoku */
 				int filled; 
+			/* contains solved or the solution board for the particular game */
+				cell sol_board[9][9];
+
+				int gridPos[81];
 		
 		public: 
 			
@@ -64,6 +68,8 @@ namespace s_brd
 			/* The above method gives unsolvable boards sometimes*/
 
 			/* Correct way to produce solvable boards */
+			void init_gridPos();
+			void count_Sols (int &num);
 			void cell_remover();
 
 			/* Function to solve the given board if needed. */
@@ -73,7 +79,7 @@ namespace s_brd
 			int input();
 
 			/* Function for printing the sudoku board */
-			void print_board();
+			void print_board(int opt);
 
 			/* Function for checking the game for completion */
 			int	chk_win();		

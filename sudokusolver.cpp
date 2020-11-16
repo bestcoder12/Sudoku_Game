@@ -1,6 +1,7 @@
 #include <iostream>
 #include <random>
 #include <ctime>
+#include <algorithm>
 
 #include "sudoku_class.h"
 
@@ -23,13 +24,9 @@ bool findEmptyPlace(cell t_board[9][9],int &row, int &col)
 }
 
 
-/* Check for repetition in row, column or box */
-bool repInGrid(cell t_board[9][9], int temp_num, int t_row, int t_col)
+/* Check for repetition in row, column or box (function similar to chk_num)*/
+bool safetyInGrid(cell t_board[9][9], int temp_num, int t_row, int t_col)
 {
-	if (temp_num > 9 || temp_num < 1)
-	{
-		return false;
-	}
 	int i = 0, j = 0;
 	
 	for (j = 0; j < 9; j++)
@@ -79,72 +76,81 @@ bool Sudoku::solveSudoku(cell t_board[9][9])
   
 	for (int num = 1; num <= 9; num++)
 	{
-		if (repInGrid(t_board,row, col, num))
+		if (safetyInGrid(t_board, num, row, col))
 		{
         
-			t_board[row][col].set_Val(num,false);
+			this->board[row][col].set_Val(num,false);
          
-			if (solveSudoku(t_board))
+			if (solveSudoku(t_board))	
         	{
            		return true;
         	}
          
-        	t_board[row][col].set_Val(-1,true);
+        	this->board[row][col].set_Val(-1,true);
       	}
 	}
 	return false;
 }
 
-/* Remove filled numbers from a solved board one at a time to generate the puzzle */
-void Sudoku::cell_remover()
+/* Generates the random number for random_shuffle function */
+int genRandNum (int Max)
 {
-	//std::default_random_engine defEngine(time(0));
-	//std::uniform_int_distribution<int> intDistro(0,8);
+	return rand()%Max;
+}
 
-	srand(time(0));   
-	cell t_board[9][9];
-	int c,r,rep_num = 0, i = 0;
-
-	while(i < 81 - filled )
+void Sudoku::init_gridPos()
+{
+	srand(time(0));
+	for (int i = 0; i < 81; i++)
 	{
-		c = rand()%9;
-		r = rand()%9;
-
-		if (board[r][c].get_Int() == -1)
-		{
-			continue;
-		}
-	  
-		rep_num = board[r][c].get_Int();
-		board[r][c].set_Val(-1,true);
-	      
-		for (int j = 0; j < 9; j++)
-		{
-			for (int k = 0; k < 9; k++)
-			{
-				t_board[j][k] = board[j][k];
-			}
-		}
-
-		if (!solveSudoku(t_board))
-		{
-			board[r][c].set_Val(rep_num,false);
-			continue;
-		}
-
-		i++;
+		this->gridPos[i] = i;
 	}
+	std::random_shuffle (this->gridPos, (this->gridPos)+81, genRandNum);
+}
 
-	/*std::default_random_engine defEngine(time(0));
-	std::uniform_int_distribution<int> intDistro(0,8);
-
+void Sudoku::count_Sols (int &num)
+{
 	int row, col;
-
-	for (int i = 0; i < 81 - filled; i++)
+	if (!findEmptyPlace(this->board, row, col))
 	{
-		row = intDistro(defEngine);
-		col = intDistro(defEngine);
+		num++;
+		return;
+	}
+	std::default_random_engine defEngine(time(0));
+	std::uniform_int_distribution<int> intDistro(1,9);
+	int randNum = 0;
+
+	for (int i = 0; i < 9 && num < 2; i++)
+	{
+		randNum = intDistro(defEngine);
+		if (safetyInGrid(this->board,randNum,row,col))
+		{
+			this->board[row][col].set_Val(randNum,false);
+			count_Sols(num);
+		}
 
 		this->board[row][col].set_Val(-1,true);
-	}*/
+	}
+
+}
+
+/* Remove filled numbers from a solved board one at a time to generate the puzzle */
+void Sudoku::cell_remover()
+{	
+	this->init_gridPos();
+	for (int i = 0; i < 81; i++)
+	{
+		int x = gridPos[i]/9;
+		int y = gridPos[i]%9;
+		int temp_num = this->board[x][y].get_Int();
+		this->board[x][y].set_Val(-1,true);
+
+		int numSols = 0;
+		count_Sols(numSols);
+
+		if (numSols != 1)
+		{
+			this->board[x][y].set_Val(temp_num,false);
+		}
+	}
 }

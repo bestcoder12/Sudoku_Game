@@ -7,3 +7,4 @@
 7. Composition
 8. Iterator
 9. Template classes
+10. Template function

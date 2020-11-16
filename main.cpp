@@ -76,7 +76,7 @@ int main(int argc, char const *argv[])
             break;
         }
         
-        s.print_board();
+        s.print_board(0);
         ext_cd = s.input();
         
         if (ext_cd == -1)

@@ -17,6 +17,10 @@ using namespace s_brd;
 using namespace user_gm;
 
 /* Functions of class cell set_Val, get_Int and get_Editable */
+/* 
+ * set_Val for putting values TO the cell and get_Int 
+ * and get_Editable for getting values FROM the cell 
+ */
 
 void cell::set_Val(int t_num, bool edit_r_not)
 {

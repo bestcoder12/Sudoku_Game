@@ -8,3 +8,8 @@
 8. Iterator
 9. Template classes
 10. Template function
+11.Array of objects
+12.this pointer
+13.scope resolution
+14.Default Constructor
+

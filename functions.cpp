@@ -253,7 +253,12 @@ int Sudoku::input()
 
 	if (loc == "solve" || loc == "Solve")
 	{
-		solveSudoku(board);
+		bool solved = this->solveSudoku(board);
+		if (!solved)
+		{
+			cout << "Could not solve board in the current state. Most probably due to some user entered number.\n";
+			exit(-1);
+		}
 		filled = 81;
 		print_board();
 		exit(0);
@@ -318,10 +323,16 @@ int Sudoku::input()
 	
 	if ( num == "solve" || num == "Solve" )
 	{
-		solveSudoku(board);
+		bool solved = this->solveSudoku(board);
+		if (!solved)
+		{
+			cout << "Could not solve board in the current state. Most probably due to some user entered number.\n";
+			exit(-1);
+		}
 		filled = 81;
 		print_board();
 		exit(0);
+		
 	}
 
 	if ( num == "del" || num == "Del")

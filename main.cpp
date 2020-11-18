@@ -41,19 +41,21 @@ int main(int argc, char const *argv[])
     #elif defined(_WIN32)
         err_chk = system("cls");
     #endif
+
+    char new_game = '0';
     
-    cout << "\n\n\n\n\n\n\t\t\t\t\tWelcome to the SUDOKU GAME!!" << "\n\n\n\n";
+    cout << "\n\n\n\n\n\n\t\t\t\tWelcome to the SUDOKU GAME!!" << "\n\n\n\n";
 
     cout << "\n\n\n\n\nAfter the game starts -> \nEnter:\n";
 	cout << "\t#!Q (to quit the game)\n";
 	cout << "\tdel (to delete the entry in a cell)\n";
 	cout << "\tsolve (to solve the puzzle automatically)\n\n";
 
-    #ifdef __linux__
-        sleep(4);
-    #elif defined (_WIN32)
-        Sleep(4000);
-    #endif
+    cout << "Press Enter to start the game: ";
+    while (new_game != '\n')
+    {
+        cin.get(new_game);
+    }
 
     #ifdef __linux__
         err_chk = system("clear");
@@ -98,6 +100,10 @@ int main(int argc, char const *argv[])
             cout << "Game lost!" << endl;
             exit(-1);
         }
+
+        cout << "#!Q (to quit the game)\n";
+	    cout << "del (to delete the entry in a cell)\n";
+	    cout << "solve (to solve the puzzle automatically)\n\n";
 
         game_Board.print_board();
         ext_cd = game_Board.input();

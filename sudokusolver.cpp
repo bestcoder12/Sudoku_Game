@@ -132,7 +132,6 @@ void Sudoku::count_Sols (int &num)
 
 		this->board[row][col].set_Val(-1,true);
 	}
-
 }
 
 /* Remove filled numbers from a solved board one at a time to generate the puzzle */

@@ -1,17 +1,13 @@
 #include<iostream>
 #include<fstream>
+#include<cstring>
 #include<string>
+#include<cstdio>
 
 #include "player.h"
 
 using namespace std;
 using namespace user_gm;
-
-#include<iostream>
-#include<fstream>
-#include<string>
-
-using namespace std;
 
 class file
 {
@@ -24,15 +20,18 @@ class file
     string message2="WON,LOST,HIGHSCORE";
     int won=0;
     int lost=0;
-    int diff=50;
+    int searching();
     void filewrite();
-    void fileread();
+    void display();
+    int main();
 
 };
+
+
 void file::filewrite()
 {
    
-  filename.open("Player_record.txt",ios::app | ios::in | ios::out);
+  filename.open("Player_record.csv",ios::app | ios::in | ios::out);
 
     if(!filename)
     {
@@ -48,11 +47,12 @@ void file::filewrite()
 
 
     if(filename)
-    
+    {
+    cout<<"Enter your name"<<endl;
+    gets(name);
     filename<<name;
     filename>>name;
-
-    cout<<name;
+    }
 
     highscore=900-diff;
 
@@ -90,37 +90,71 @@ void file::filewrite()
 
     
 }
-
-void file::fileread()
+void file::display()
 {
 
-    char name2[30];
-     cout<<"Enter Your Name"<<endl;
-     cin.getline(name2,30);
-
-     if(name==name2)
-     {
-         filename.read((char*)&name2, sizeof(name2));
+         filename.read((char*)&name, sizeof(name));
          cout << "\n Player Name:\t" << name;
          cout << "\n WON" <<won;
          cout << "\n LOST \t" <<lost;
          cout << "\n HIGHSCORE \t"<<highscore;
                       
-    }
-    
-   else
-    {
-       cout<<"Creating new Player Record"<<endl;
-       fileread();
-       filename.close();
-    }
-                  
 }
+int file::searching()
+{
+     fstream filename;
+     char name1[30];
+     filename.open("Player_record.csv",ios::in|ios::app|ios::out);
+     cout<<"Enter Player name";
+     gets(name1);
+     if(!filename)
+        cout<<"file not created ";
+     
+     else
+     {
+         filename.read((char*)this,sizeof(*this));
+         while(!filename.eof())
+         {
+ 
+          if(!strcmp(this->name,name1))
+          {
+            return 1;
+             break;
+          }
+          filename.read((char*)this,sizeof(*this));
+         }
+         if(filename.eof())
+         {
+          cout<<"\nRecord not found\n";
+          return -1;
+         }
+
+          
+    
+     filename.close();
+}
+}
+ 
+
 int main()
 {
     file obj;
     
-    obj.fileread();
+
+   if(obj.searching()==-1)
+   {
+       cout<<"You are a new Player "<<endl;
+       obj.filewrite();
+   }
+   else if(obj.searching()==1)
+   {
+       cout<<"Your Record Exists"<<endl;
+       obj.display();
+   }
+
+    return 0;
 
 
 }
+
+ 

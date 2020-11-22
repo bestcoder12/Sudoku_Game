@@ -6,32 +6,33 @@
 
 #include "player.h"
 
+
 using namespace std;
-using namespace user_gm;
 
 class file
 {
     public:
     fstream filename;
     string message="Welcome to the Sudoku Game";
-    char name[30];
+    char namee[30];
     double highscore;
     string message1;
     string message2="WON,LOST,HIGHSCORE";
     int won=0;
     int lost=0;
+    int diff=50;
     int searching();
-    void filewrite();
+    int filewrite(char[]);
     void display();
     int main();
 
 };
 
 
-void file::filewrite()
+int file::filewrite(char[])
 {
    
-  filename.open("Player_record.csv",ios::app | ios::in | ios::out);
+  filename.open("Player_record.txt",ios::app | ios::in | ios::out);
 
     if(!filename)
     {
@@ -40,18 +41,12 @@ void file::filewrite()
     else
     {
         cout<<"File created successfully"<<endl;
-    }
     
-    filename<<message;
-    filename>>message;
 
+    filename<<namee;
+    filename>>namee;
 
-    if(filename)
-    {
-    cout<<"Enter your name"<<endl;
-    gets(name);
-    filename<<name;
-    filename>>name;
+    cout<<"New Record Added"<<endl;
     }
 
     highscore=900-diff;
@@ -86,15 +81,15 @@ void file::filewrite()
     filename>>message2>>won>>lost>>highscore;
 
     
-    filename.close();
+    
 
     
 }
 void file::display()
 {
 
-         filename.read((char*)&name, sizeof(name));
-         cout << "\n Player Name:\t" << name;
+         filename.read((char*)&namee, sizeof(namee));
+         cout << "\n Player Name:\t" <<namee;
          cout << "\n WON" <<won;
          cout << "\n LOST \t" <<lost;
          cout << "\n HIGHSCORE \t"<<highscore;
@@ -105,10 +100,12 @@ int file::searching()
      fstream filename;
      char name1[30];
      filename.open("Player_record.csv",ios::in|ios::app|ios::out);
-     cout<<"Enter Player name";
-     gets(name1);
+     cout<<"Enter Player name\n";
+     cin.getline(name1,30);
      if(!filename)
+     {
         cout<<"file not created ";
+     }
      
      else
      {
@@ -116,7 +113,7 @@ int file::searching()
          while(!filename.eof())
          {
  
-          if(!strcmp(this->name,name1))
+          if(!strcmp(this->namee,name1))
           {
             return 1;
              break;
@@ -131,7 +128,7 @@ int file::searching()
 
           
     
-     filename.close();
+     
 }
 }
  
@@ -139,18 +136,21 @@ int file::searching()
 int main()
 {
     file obj;
-    
 
-   if(obj.searching()==-1)
+    char namee[30];
+    
+   if(obj.searching()==1)
    {
-       cout<<"You are a new Player "<<endl;
-       obj.filewrite();
-   }
-   else if(obj.searching()==1)
-   {
-       cout<<"Your Record Exists"<<endl;
        obj.display();
+
    }
+   else if(obj.searching()==-1)
+   {
+       cout<<"NOW ENTER NEW RECORD"<<endl;
+       cin.getline(namee,30);
+       obj.filewrite(namee);
+   }
+   
 
     return 0;
 

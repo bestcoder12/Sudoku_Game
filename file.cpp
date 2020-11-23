@@ -99,7 +99,7 @@ int file::searching()
 {
      fstream filename;
      char name1[30];
-     filename.open("Player_record.csv",ios::in|ios::app|ios::out);
+     filename.open("Player_record.txt",ios::in|ios::app|ios::out);
      cout<<"Enter Player name\n";
      cin.getline(name1,30);
      if(!filename)
